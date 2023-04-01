@@ -32,6 +32,8 @@
     "import/no-extraneous-dependencies": ["off", { "devDependencies": false }],
     "react/jsx-one-expression-per-line": "off",
     "no-restricted-syntax": "off",
-    "@typescript-eslint/comma-dangle": "off"
+    "@typescript-eslint/comma-dangle": "off",
+    "no-param-reassign": "off",
+    "wrap-iife": "off",
   }
 }

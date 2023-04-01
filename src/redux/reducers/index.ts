@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import counterReducer from './counter';
+import fetcherReducer from './fetch';
 
 const allReducers = combineReducers({
-  counter: counterReducer,
+  data: fetcherReducer,
 });
 
 export default allReducers;

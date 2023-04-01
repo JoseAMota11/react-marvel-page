@@ -1,29 +1,10 @@
-import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement } from './actions';
-// import getCharacter from './services/character';
+import Router from './components/routes/Router/Router';
+import Home from './pages/Home/Home';
 
-type StateSelector = {
-  counter: number;
-};
-
-// const test = await getCharacter();
-
-const App = () => {
-  const counter = useSelector((state: StateSelector) => state.counter);
-  const dispatch = useDispatch();
-  const [byTwo] = useState(2);
-  return (
-    <div>
-      <p>Counter by two: {counter}</p>
-      <button type="button" onClick={() => dispatch(decrement(byTwo))}>
-        Decrement
-      </button>
-      <button type="button" onClick={() => dispatch(increment(byTwo))}>
-        Increment
-      </button>
-    </div>
-  );
-};
+const App = () => (
+  <div>
+    <Router Home={<Home />} />
+  </div>
+);
 
 export default App;
