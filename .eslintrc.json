@@ -27,6 +27,10 @@
     ],
     "@typescript-eslint/comma-dangle": "error",
     "react/no-unused-prop-types": "off",
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "@typescript-eslint/default-param-last": "off",
+    "no-underscore-dangle": "off",
+    "import/no-extraneous-dependencies": ["off", { "devDependencies": false }],
+    "react/jsx-one-expression-per-line": "off"
   }
 }

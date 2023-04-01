@@ -1,18 +1,26 @@
-import { createStore } from 'redux';
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, decrement } from './actions';
 
-function counterReducer(action, state = { value: 0 }) {
-  switch (action.type) {
-    case 'counter/incremented':
-      return { value: state.value + 1 };
-    case 'counter/decremented':
-      return { value: state.value - 1 };
-    default:
-      return state;
-  }
-}
+type StateSelector = {
+  counter: number;
+};
 
-function App() {
-  const store = createStore(counterReducer);
-}
+const App = () => {
+  const counter = useSelector((state: StateSelector) => state.counter);
+  const dispatch = useDispatch();
+  const [byTwo] = useState(2);
+  return (
+    <div>
+      <p>Counter by two: {counter}</p>
+      <button type="button" onClick={() => dispatch(decrement(byTwo))}>
+        Decrement
+      </button>
+      <button type="button" onClick={() => dispatch(increment(byTwo))}>
+        Increment
+      </button>
+    </div>
+  );
+};
 
 export default App;
