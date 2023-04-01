@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment, decrement } from './actions';
+// import getCharacter from './services/character';
 
 type StateSelector = {
   counter: number;
 };
+
+// const test = await getCharacter();
 
 const App = () => {
   const counter = useSelector((state: StateSelector) => state.counter);

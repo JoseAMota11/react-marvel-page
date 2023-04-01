@@ -9,9 +9,20 @@ const http = async <T>(path: string, config: RequestInit): Promise<T> => {
   });
 };
 
-const get = <T>(path: string, config: RequestInit): Promise<T> => {
+const get = <T>(
+  path: string,
+  config: RequestInit,
+  options: object
+): Promise<T> => {
+  const params = new URLSearchParams();
+
+  for (const [key, value] of Object.entries(options)) {
+    params.set(key, value);
+  }
+
+  const urlPath = `${path}?${params.toString()}`;
   const init = { method: 'GET', ...config };
-  return http<T>(path, init);
+  return http<T>(urlPath, init);
 };
 
 export default get;
