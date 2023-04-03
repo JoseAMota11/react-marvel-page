@@ -1,0 +1,9 @@
+@use '../../../scss/abstracts/mixins' as *;
+@use '../../../scss/abstracts/variables' as *;
+
+.characters {
+  width: $width-big;
+  @include flexbox($align: unset, $gap: 1rem);
+  color: $primary-white;
+  padding: $padding-small 0;
+}

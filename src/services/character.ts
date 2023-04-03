@@ -8,14 +8,15 @@ const request = {
   },
 };
 
-const options = {
-  limit: LIMIT,
-  ts: 1,
-  apikey: PUBLIC_KEY,
-  hash: HASH,
-};
+const getCharacter = async (offset: number) => {
+  const options = {
+    limit: LIMIT,
+    ts: 1,
+    apikey: PUBLIC_KEY,
+    offset,
+    hash: HASH,
+  };
 
-const getCharacter = async () => {
   const characters = await get<Marvel>(URL, request, options);
   return characters;
 };
