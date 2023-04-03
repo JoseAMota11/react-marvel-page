@@ -1,0 +1,27 @@
+@use '../../../scss/abstracts/mixins' as *;
+@use '../../../scss/abstracts/variables' as *;
+
+.filter {
+  width: $width-big;
+  padding-top: $padding-small;
+
+  &--title {
+    font-size: $font-size-medium;
+    color: $primary-white;
+    margin-bottom: 1rem;
+  }
+
+  &--container__characters,
+  &--container__comics,
+  &--container__stories {
+    @include grid($gap: 1rem);
+    grid-template-columns: repeat(3, 1fr);
+
+    .filter--input,
+    .filter--select {
+      height: $input-height-small;
+      text-indent: 0.3rem;
+      border-radius: $border-radius-small;
+    }
+  }
+}
