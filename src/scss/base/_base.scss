@@ -9,6 +9,6 @@ body {
   background-color: $primary-back;
 }
 
-.main {
+.center--section {
   @include flexbox();
 }
