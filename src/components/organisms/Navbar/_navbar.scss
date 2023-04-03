@@ -13,11 +13,30 @@
     @include flexbox($direction: row, $justify: space-between);
 
     &__item {
-      background-color: rgba($color: #000000, $alpha: 0.2);
       height: 100%;
+      @include flexbox();
+      padding: 0 $padding-smaller;
+      transition: all 0.3s ease;
 
       .link {
         color: $primary-white;
+      }
+
+      &:hover {
+        background-color: rgba($color: #000000, $alpha: 0.2);
+      }
+    }
+
+    &__item:has(.active) {
+      background-color: rgba($color: #000000, $alpha: 0.2);
+      font-weight: 500;
+
+      .active {
+        color: $primary-white;
+      }
+
+      &:hover {
+        background-color: rgba($color: #000000, $alpha: 0.4);
       }
     }
   }
