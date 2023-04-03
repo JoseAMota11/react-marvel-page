@@ -1,7 +1,7 @@
 import { Result } from '../../interface/marvel';
 
 type ActionType = {
-  type: 'API/CHARACTER' | '';
+  type: 'API/CHARACTERS' | '';
   payload: Result | [];
 };
 
@@ -11,7 +11,7 @@ const fetcherReducer = (state: StateType, action: ActionType) => {
   if (typeof state === 'undefined') state = [];
 
   switch (action.type) {
-    case 'API/CHARACTER':
+    case 'API/CHARACTERS':
       return action.payload;
     default:
       return state;

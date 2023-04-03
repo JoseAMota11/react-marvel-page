@@ -1,8 +1,8 @@
 import { Result } from '../../interface/marvel';
 
-const fetcherAction = (data: Result[]) => ({
-  type: 'API/CHARACTER',
+const fetcherCharactersAction = (data: Result[]) => ({
+  type: 'API/CHARACTERS',
   payload: data,
 });
 
-export default fetcherAction;
+export default fetcherCharactersAction;

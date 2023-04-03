@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCharacter } from '../../../services/character';
-import fetcherAction from '../../../redux/actions/fetcher';
+import fetcherCharactersAction from '../../../redux/actions/fetcher';
 import { Result } from '../../../interface/marvel';
 import Card from '../../modules/Card/Card';
+import Loading from '../../atoms/Loading/Loading';
 
 type StateSelector = {
   data: Result[];
@@ -22,7 +23,7 @@ const Characters = () => {
         const {
           data: { results },
         } = await getCharacter(offset);
-        dispatch(fetcherAction(results));
+        dispatch(fetcherCharactersAction(results));
       } catch (error) {
         console.error(error);
       }
@@ -34,11 +35,13 @@ const Characters = () => {
       <section className="characters">
         <h2 className="characters--title">Characters</h2>
         <div className="characters--card__container">
-          {selectorCharacter.length > 0
-            ? selectorCharacter.map(({ thumbnail, name, id }) => (
-                <Card key={id} thumbnail={thumbnail} name={name} />
-              ))
-            : null}
+          {selectorCharacter.length > 0 ? (
+            selectorCharacter.map(({ thumbnail, name, id }) => (
+              <Card key={id} thumbnail={thumbnail} name={name} />
+            ))
+          ) : (
+            <Loading />
+          )}
         </div>
       </section>
     </div>

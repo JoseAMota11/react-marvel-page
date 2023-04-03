@@ -1,11 +1,27 @@
-import { useEffect } from 'react';
+import debounce from 'lodash/debounce';
+import { ChangeEvent, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import fetcherCharactersAction from '../../../redux/actions/fetcher';
+import { getCharacterByName } from '../../../services/character';
 
 export type FilterProps = {
   section: 'CHARACTERS' | 'COMICS' | 'STORIES';
 };
 
 const Filter = ({ section }: FilterProps) => {
-  useEffect(() => {});
+  const [offset] = useState(0);
+  const dispatch = useDispatch();
+
+  const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    const {
+      data: { results },
+    } = await getCharacterByName(offset, value);
+    dispatch(fetcherCharactersAction(results));
+  };
+
+  const debounceChange = debounce(handleChange, 500);
+
   return (
     <div className="center--section">
       <div className="filter">
@@ -16,6 +32,7 @@ const Filter = ({ section }: FilterProps) => {
               className="filter--input"
               type="search"
               placeholder="E.g. Spider-Man"
+              onChange={debounceChange}
             />
             <select className="filter--select">
               <option value="default" defaultChecked>
