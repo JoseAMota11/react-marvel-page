@@ -2,7 +2,7 @@
 @use '../../scss/abstracts/variables' as *;
 
 .home {
-  width: $width-bigger;
+  width: $width-big;
   @include flexbox($align: unset, $gap: 1rem);
   color: $primary-white;
   padding: $padding-small 0;

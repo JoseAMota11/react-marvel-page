@@ -1,4 +1,11 @@
-import { Characters, Comics, Navbar, Router, Stories } from './components';
+import {
+  Characters,
+  Comics,
+  Filter,
+  Navbar,
+  Router,
+  Stories,
+} from './components';
 import { Home } from './pages';
 
 const App = () => (
@@ -9,6 +16,7 @@ const App = () => (
       Characters={Characters}
       Comics={Comics}
       Stories={Stories}
+      Filter={Filter}
     />
   </div>
 );

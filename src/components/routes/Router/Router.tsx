@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Route from '../routes';
+import { FilterProps } from '../../atoms/Filter/Filter';
 
 type RouteProps = {
   Home: () => JSX.Element;
@@ -7,9 +8,17 @@ type RouteProps = {
   Characters: () => JSX.Element;
   Comics: () => JSX.Element;
   Stories: () => JSX.Element;
+  Filter: ({ section }: FilterProps) => JSX.Element;
 };
 
-const Router = ({ Home, Navbar, Characters, Comics, Stories }: RouteProps) => {
+const Router = ({
+  Home,
+  Navbar,
+  Characters,
+  Comics,
+  Stories,
+  Filter,
+}: RouteProps) => {
   const router = createBrowserRouter([
     {
       path: Route.Home,
@@ -25,6 +34,7 @@ const Router = ({ Home, Navbar, Characters, Comics, Stories }: RouteProps) => {
       element: (
         <>
           <Navbar />
+          <Filter section="CHARACTERS" />
           <Characters />
         </>
       ),
@@ -34,6 +44,7 @@ const Router = ({ Home, Navbar, Characters, Comics, Stories }: RouteProps) => {
       element: (
         <>
           <Navbar />
+          <Filter section="COMICS" />
           <Comics />
         </>
       ),
@@ -43,6 +54,7 @@ const Router = ({ Home, Navbar, Characters, Comics, Stories }: RouteProps) => {
       element: (
         <>
           <Navbar />
+          <Filter section="STORIES" />
           <Stories />
         </>
       ),
