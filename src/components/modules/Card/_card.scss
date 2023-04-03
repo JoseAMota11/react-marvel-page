@@ -10,8 +10,8 @@
   &--image {
     width: 100%;
     object-fit: cover;
-    height: 190px;
-    border-radius: $border-radius-small;
+    height: 180px;
+    border-bottom: 4px solid $secondary-red;
   }
 
   &--name {
