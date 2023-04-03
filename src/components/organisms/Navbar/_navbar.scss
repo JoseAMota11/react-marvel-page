@@ -20,6 +20,7 @@
 
       .link {
         color: $primary-white;
+        text-transform: uppercase;
       }
 
       &:hover {
@@ -33,6 +34,7 @@
 
       .active {
         color: $primary-white;
+        text-transform: uppercase;
       }
 
       &:hover {
