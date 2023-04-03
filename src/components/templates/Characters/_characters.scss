@@ -6,4 +6,13 @@
   @include flexbox($align: unset, $gap: 1rem);
   color: $primary-white;
   padding: $padding-small 0;
+
+  &--title {
+    font-size: $font-size-medium;
+  }
+
+  &--card__container {
+    @include grid($gap: 1rem);
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

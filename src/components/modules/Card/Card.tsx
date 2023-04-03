@@ -7,7 +7,7 @@ const Card = ({ name, thumbnail }: Partial<Result>) => (
       src={thumbnail ? `${thumbnail.path}.${thumbnail.extension}` : undefined}
       alt={name}
     />
-    <h3>{name}</h3>
+    <h3 className="card--name">{name}</h3>
   </div>
 );
 

@@ -32,8 +32,8 @@ const Characters = () => {
   return (
     <div className="center--section">
       <section className="characters">
-        <h2>Characters</h2>
-        <div className="card--container">
+        <h2 className="characters--title">Characters</h2>
+        <div className="characters--card__container">
           {selectorCharacter.length > 0
             ? selectorCharacter.map(({ thumbnail, name, id }) => (
                 <Card key={id} thumbnail={thumbnail} name={name} />

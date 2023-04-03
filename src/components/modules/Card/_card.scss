@@ -2,5 +2,19 @@
 @use '../../../scss/abstracts/variables' as *;
 
 .card {
-  width: $card-width-medium;
+  width: 100%;
+  background-color: $secondary-black;
+  padding: $padding-small;
+  border-radius: $border-radius-medium;
+
+  &--image {
+    width: 100%;
+    object-fit: cover;
+    height: 190px;
+    border-radius: $border-radius-small;
+  }
+
+  &--name {
+    font-size: $font-size-small;
+  }
 }
