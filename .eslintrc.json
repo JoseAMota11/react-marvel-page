@@ -35,6 +35,9 @@
     "@typescript-eslint/comma-dangle": "off",
     "no-param-reassign": "off",
     "wrap-iife": "off",
-    "react/no-unescaped-entities": "off"
+    "react/no-unescaped-entities": "off",
+    "react/jsx-indent": "off",
+    "@typescript-eslint/indent": "off",
+    "operator-linebreak": "off"
   }
 }

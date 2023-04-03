@@ -1,0 +1,6 @@
+@use '../../../scss/abstracts/mixins' as *;
+@use '../../../scss/abstracts/variables' as *;
+
+.card {
+  width: $card-width-medium;
+}
