@@ -34,6 +34,7 @@
     "no-restricted-syntax": "off",
     "@typescript-eslint/comma-dangle": "off",
     "no-param-reassign": "off",
-    "wrap-iife": "off"
+    "wrap-iife": "off",
+    "react/no-unescaped-entities": "off"
   }
 }

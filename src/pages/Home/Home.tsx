@@ -23,9 +23,10 @@ const Home = () => (
         entertainment companies, built on a proven library of more than 8,000
         characters featured in a variety of media over seventy-five years.
         Marvel utilizes its character franchises in entertainment, licensing and
-        publishing. For more information visit marvel.com. © 2023 MARVEL
+        publishing.
       </p>
       <img
+        className="home--image"
         src="https://www.komar.de/en/media/cms/fileadmin/user_upload/Category/Fototapeten/Marvel/komar-fototapeten-marvel.jpg"
         alt="Marvel Characters"
       />

@@ -3,4 +3,20 @@
 
 .home {
   width: $width-big;
+  @include flexbox($align: unset, $gap: 1rem);
+  color: $primary-white;
+  padding: $padding-small 0;
+
+  &--title {
+    font-size: $font-size-big;
+  }
+
+  &--paragraph {
+    font-size: $font-size-small;
+    text-align: justify;
+  }
+
+  &--image {
+    border-radius: $border-radius-small;
+  }
 }
