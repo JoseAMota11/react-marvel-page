@@ -38,6 +38,8 @@
     "react/no-unescaped-entities": "off",
     "react/jsx-indent": "off",
     "@typescript-eslint/indent": "off",
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off"
   }
 }

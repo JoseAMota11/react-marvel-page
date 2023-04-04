@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCharacter } from '../../../services/character';
-import fetcherCharactersAction from '../../../redux/actions/fetcher';
+import { fetcherCharactersAction } from '../../../redux/actions/fetcher';
 import { Result } from '../../../interface/characters';
-import Card from '../../modules/Card/Card';
+import Card from '../../modules/CardCharacters/Card';
 import Loading from '../../atoms/Loading/Loading';
 import NoResults from '../../atoms/NoResults/NoResults';
 
@@ -28,6 +28,7 @@ const Characters = () => {
       clearTimeout(timeOut);
     };
   }, []);
+
   useEffect(() => {
     (async function getData() {
       try {
@@ -41,12 +42,13 @@ const Characters = () => {
     })();
   }, []);
 
-  if (loading)
+  if (loading) {
     return (
       <div className="center--section">
         <Loading />
       </div>
     );
+  }
 
   return (
     <div className="center--section">

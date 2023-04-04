@@ -1,7 +1,7 @@
 import { Result } from '../../interface/characters';
 
 type ActionType = {
-  type: 'API/CHARACTERS' | '';
+  type: 'API/CHARACTERS' | 'API/COMICS' | '';
   payload: Result | [];
 };
 
@@ -12,6 +12,8 @@ const fetcherReducer = (state: StateType, action: ActionType) => {
 
   switch (action.type) {
     case 'API/CHARACTERS':
+      return action.payload;
+    case 'API/COMICS':
       return action.payload;
     default:
       return state;

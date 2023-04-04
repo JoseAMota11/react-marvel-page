@@ -1,7 +1,7 @@
 import debounce from 'lodash/debounce';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
-import fetcherCharactersAction from '../../../redux/actions/fetcher';
+import { fetcherCharactersAction } from '../../../redux/actions/fetcher';
 import {
   getCharacterByComics,
   getCharacterByName,
@@ -13,7 +13,6 @@ export type FilterProps = {
 };
 
 const Filter = ({ section }: FilterProps) => {
-  const [offset] = useState(0);
   const dispatch = useDispatch();
 
   const handleChangeFilterByName = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +33,7 @@ const Filter = ({ section }: FilterProps) => {
     e: ChangeEvent<HTMLSelectElement>
   ) => {
     const { value } = e.target;
-    const id = parseInt(value);
+    const id = parseInt(value, 10);
     const {
       data: { results },
     } = await getCharacterByComics(id);
@@ -45,7 +44,7 @@ const Filter = ({ section }: FilterProps) => {
     e: ChangeEvent<HTMLSelectElement>
   ) => {
     const { value } = e.target;
-    const id = parseInt(value);
+    const id = parseInt(value, 10);
     const {
       data: { results },
     } = await getCharacterByStories(id);
@@ -55,7 +54,7 @@ const Filter = ({ section }: FilterProps) => {
   return (
     <div className="center--section">
       <div className="filter">
-        <h2 className="filter--title">Filter</h2>
+        <h2 className="filter--title">Filters</h2>
         {section === 'CHARACTERS' ? (
           <div className="filter--container__characters">
             <input
