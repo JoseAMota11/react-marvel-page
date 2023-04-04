@@ -60,7 +60,7 @@ const Comics = () => {
               <Card key={id} id={id} thumbnail={thumbnail} title={title} />
             ))
           ) : (
-            <NoResults message="characters" />
+            <NoResults message="comics" />
           )}
         </div>
       </section>

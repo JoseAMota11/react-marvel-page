@@ -30,7 +30,7 @@ type Options = {
   hasDigitalIssue: boolean;
   modifiedSince: Date;
   creators: number;
-  characters: number;
+  comics: number;
   events: number;
   sharedAppearances: number;
   collaborators: number;
@@ -92,5 +92,16 @@ export const getComicsByTitle = async (titleStartsWith: string) => {
   const url = `${URL}/comics`;
 
   const comics = await get<Comic>(url, request, options);
+  return comics;
+};
+
+export const getOneComicById = async (comic: number) => {
+  const detailsOptions = {
+    ts: 1,
+    apikey: PUBLIC_KEY,
+    hash: HASH,
+  };
+  const url = `${URL}/comics/${comic}`;
+  const comics = await get<Comic>(url, request, detailsOptions);
   return comics;
 };
