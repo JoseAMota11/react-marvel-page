@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCharacter } from '../../../services/character';
+import { getCharacter } from '../../../services/character.services';
 import { fetcherCharactersAction } from '../../../redux/actions/fetcher';
 import { Result } from '../../../interface/characters';
 import Card from '../../modules/CardCharacters/Card';

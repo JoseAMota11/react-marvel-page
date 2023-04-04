@@ -9,8 +9,11 @@ import {
   getCharacterByComics,
   getCharacterByName,
   getCharacterByStories,
-} from '../../../services/character';
-import { getComicsByFormat, getComicsByTitle } from '../../../services/comic';
+} from '../../../services/character.services';
+import {
+  getComicsByFormat,
+  getComicsByTitle,
+} from '../../../services/comic.services';
 
 export type FilterProps = {
   section: 'CHARACTERS' | 'COMICS' | 'STORIES';

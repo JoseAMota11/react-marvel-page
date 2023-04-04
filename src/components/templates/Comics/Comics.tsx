@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Result } from '../../../interface/comics';
-import { getComics } from '../../../services/comic';
+import { getComics } from '../../../services/comic.services';
 import { fetcherComicsAction } from '../../../redux/actions/fetcher';
 import NoResults from '../../atoms/NoResults/NoResults';
 import Loading from '../../atoms/Loading/Loading';

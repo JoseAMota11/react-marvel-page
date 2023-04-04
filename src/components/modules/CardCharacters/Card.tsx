@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Result } from '../../../interface/characters';
 import Route from '../../routes/routes';
+import { shortenString } from '../../../helpers/constants';
 
 const Card = ({ name, thumbnail, id }: Partial<Result>) => {
   const location = useNavigate();
@@ -15,7 +16,7 @@ const Card = ({ name, thumbnail, id }: Partial<Result>) => {
         src={thumbnail ? `${thumbnail.path}.${thumbnail.extension}` : undefined}
         alt={name}
       />
-      <h3 className="card--name">{name}</h3>
+      <h3 className="card--name">{shortenString(name)}</h3>
     </div>
   );
 };

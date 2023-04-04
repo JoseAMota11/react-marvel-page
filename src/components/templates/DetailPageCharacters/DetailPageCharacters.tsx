@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { getOneCharacterById } from '../../../services/character';
+import { getOneCharacterById } from '../../../services/character.services';
 import { Result } from '../../../interface/characters';
 import Loading from '../../atoms/Loading/Loading';
 

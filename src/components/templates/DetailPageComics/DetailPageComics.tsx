@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Result } from '../../../interface/comics';
 import Loading from '../../atoms/Loading/Loading';
-import { getOneComicById } from '../../../services/comic';
+import { getOneComicById } from '../../../services/comic.services';
 
 const DetailPageCharacters = () => {
   const { id } = useParams();
