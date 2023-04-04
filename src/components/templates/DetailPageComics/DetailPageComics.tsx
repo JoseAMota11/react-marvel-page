@@ -35,7 +35,11 @@ const DetailPageCharacters = () => {
                 Back
               </Link>
               <h3 className="details--name">{title}</h3>
-              <img src={`${path}.${extension}`} alt={title} />
+              <img
+                className="details--image"
+                src={`${path}.${extension}`}
+                alt={title}
+              />
               <div className="details--description">
                 <h3>Description</h3>
                 <p className="details--description__item">

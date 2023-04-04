@@ -31,6 +31,7 @@ const DetailPageCharacters = () => {
             </Link>
             <h3 className="details--name">{shortenString(title, 20)}</h3>
             <img
+              className="details--image"
               src={
                 thumbnail
                   ? `${thumbnail.path}.${thumbnail.extension}`

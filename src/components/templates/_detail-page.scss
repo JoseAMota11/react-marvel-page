@@ -39,4 +39,31 @@
       text-align: justify;
     }
   }
+
+  @media (max-width: $screen-breakpoint-biggest) {
+    width: $width-medium;
+  }
+
+  @media (max-width: $screen-breakpoint-bigger) {
+    width: $width-small;
+
+    &--image {
+      grid-column: 1 / -1;
+    }
+
+    &--description {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: $screen-breakpoint-big) {
+    &--back,
+    &--name {
+      font-size: $font-size-small;
+    }
+  }
+
+  @media (max-width: $screen-breakpoint-medium) {
+    width: 100%;
+  }
 }
