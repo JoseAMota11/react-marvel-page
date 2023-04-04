@@ -8,10 +8,22 @@
   color: $primary-white;
   padding: $padding-small 0;
 
+  &--back {
+    justify-self: flex-start;
+    padding: $padding-smallest $padding-medium;
+    background-color: $primary-white;
+    color: $primary-black;
+    text-align: center;
+    border-radius: $border-radius-small;
+
+    &:hover {
+      background-color: $secondary-white;
+    }
+  }
+
   &--back,
   &--name {
     font-size: $font-size-medium;
-    color: $primary-white;
     font-weight: 500;
   }
 

@@ -13,7 +13,7 @@ const DetailPageCharacters = () => {
       if (id) {
         const {
           data: { results },
-        } = await getOneCharacterById(parseInt(id));
+        } = await getOneCharacterById(parseInt(id, 10));
         setData(results);
       }
     })();
@@ -21,29 +21,32 @@ const DetailPageCharacters = () => {
 
   return (
     <div className="center--section">
-      <div className="details">
-        <Link className="details--back" to={'/characters'}>
-          Back
-        </Link>
-        {data.length > 0 ? (
-          data.map(
-            ({ name, thumbnail: { path, extension }, description }: Result) => (
-              <>
-                <h3 className="details--name">{name}</h3>
-                <img src={`${path}.${extension}`} alt={name} />
-                <div className="details--description">
-                  <h3>Description</h3>
-                  <p className="details--description__item">
-                    {description.length <= 0 ? 'No description' : description}
-                  </p>
-                </div>
-              </>
-            )
+      {data.length > 0 ? (
+        data.map(
+          ({
+            name,
+            thumbnail: { path, extension },
+            description,
+            id: key,
+          }: Result) => (
+            <div key={key} className="details">
+              <Link className="details--back" to="/characters">
+                Back
+              </Link>
+              <h3 className="details--name">{name}</h3>
+              <img src={`${path}.${extension}`} alt={name} />
+              <div className="details--description">
+                <h3>Description</h3>
+                <p className="details--description__item">
+                  {description.length <= 0 ? 'No description' : description}
+                </p>
+              </div>
+            </div>
           )
-        ) : (
-          <Loading />
-        )}
-      </div>
+        )
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 };
