@@ -3,7 +3,16 @@ import get from '../helpers/fetchInfo';
 import { Comic } from '../interface/comics';
 
 type Options = {
-  format: string;
+  format:
+    | 'comic'
+    | 'magazine'
+    | 'trade paperback'
+    | 'hardcover'
+    | 'digest'
+    | 'graphic novel'
+    | 'digital comic'
+    | 'infinite comic'
+    | string;
   formatType: string;
   noVariants: boolean;
   dateDescriptor: string;
@@ -51,12 +60,11 @@ const request = {
   },
 };
 
-const options: Options = {
+const options: Partial<Options> = {
   limit: LIMIT,
   ts: 1,
   apikey: PUBLIC_KEY,
   hash: HASH,
-  offset: 0,
 };
 
 export const getComics = async (offset: number) => {
@@ -67,4 +75,12 @@ export const getComics = async (offset: number) => {
   return comics;
 };
 
-export const getComicsByFormat = async () => {};
+export const getComicsByFormat = async (format: string) => {
+  if (format.length > 0) {
+    options.format = format;
+  } else delete options.format;
+  const url = `${URL}/comics`;
+
+  const comics = await get<Comic>(url, request, options);
+  return comics;
+};

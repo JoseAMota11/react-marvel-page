@@ -1,12 +1,16 @@
 import debounce from 'lodash/debounce';
 import { ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetcherCharactersAction } from '../../../redux/actions/fetcher';
+import {
+  fetcherCharactersAction,
+  fetcherComicsAction,
+} from '../../../redux/actions/fetcher';
 import {
   getCharacterByComics,
   getCharacterByName,
   getCharacterByStories,
 } from '../../../services/character';
+import { getComicsByFormat } from '../../../services/comic';
 
 export type FilterProps = {
   section: 'CHARACTERS' | 'COMICS' | 'STORIES';
@@ -49,6 +53,16 @@ const Filter = ({ section }: FilterProps) => {
       data: { results },
     } = await getCharacterByStories(id);
     dispatch(fetcherCharactersAction(results));
+  };
+
+  const handleChangeSelectFormat = async (
+    e: ChangeEvent<HTMLSelectElement>
+  ) => {
+    const { value } = e.target;
+    const {
+      data: { results },
+    } = await getComicsByFormat(value);
+    dispatch(fetcherComicsAction(results));
   };
 
   return (
@@ -134,11 +148,22 @@ const Filter = ({ section }: FilterProps) => {
         ) : null}
         {section === 'COMICS' ? (
           <div className="filter--container__comics">
-            <input
-              className="filter--input"
-              type="search"
-              placeholder="E.g. comic"
-            />
+            <select
+              className="filter--select"
+              onChange={handleChangeSelectFormat}
+            >
+              <option value="" defaultChecked>
+                Format (Default)
+              </option>
+              <option value="comic">comic</option>
+              <option value="magazine">magazine</option>
+              <option value="trade paperback">trade paperback</option>
+              <option value="hardcover">hardcover</option>
+              <option value="digest">digest</option>
+              <option value="graphic novel">graphic novel</option>
+              <option value="digital comic">digital comic</option>
+              <option value="infinite comic">infinite comic</option>
+            </select>
             <input
               className="filter--input"
               type="search"
