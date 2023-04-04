@@ -7,3 +7,4 @@ export { default as Filter } from './atoms/Filter/Filter';
 export { default as Loading } from './atoms/Loading/Loading';
 export { default as DetailPageCharacters } from './templates/DetailPageCharacters/DetailPageCharacters';
 export { default as DetailPageComics } from './templates/DetailPageComics/DetailPageComics';
+export { default as DetailPageStories } from './templates/DetailPageStories/DetailPageStories';

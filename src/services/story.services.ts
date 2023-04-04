@@ -47,3 +47,15 @@ export const getStoriesByCharacters = async (charactersId: number) => {
   const comics = await get<Stories>(url, request, options);
   return comics;
 };
+
+export const getOneStoriesById = async (stories: number) => {
+  const detailsOptions = {
+    ts: 1,
+    apikey: PUBLIC_KEY,
+    hash: HASH,
+  };
+
+  const url = `${URL}/stories/${stories}`;
+  const comics = await get<Stories>(url, request, detailsOptions);
+  return comics;
+};

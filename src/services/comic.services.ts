@@ -101,6 +101,7 @@ export const getOneComicById = async (comic: number) => {
     apikey: PUBLIC_KEY,
     hash: HASH,
   };
+
   const url = `${URL}/comics/${comic}`;
   const comics = await get<Comic>(url, request, detailsOptions);
   return comics;

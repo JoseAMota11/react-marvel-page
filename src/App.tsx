@@ -3,6 +3,7 @@ import {
   Comics,
   DetailPageCharacters,
   DetailPageComics,
+  DetailPageStories,
   Filter,
   Navbar,
   Router,
@@ -21,6 +22,7 @@ const App = () => (
       Filter={Filter}
       DetailPageCharacters={DetailPageCharacters}
       DetailPageComics={DetailPageComics}
+      DetailPageStories={DetailPageStories}
     />
   </div>
 );

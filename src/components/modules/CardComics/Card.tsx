@@ -16,7 +16,7 @@ const Card = ({ title, id, thumbnail }: Partial<Result>) => {
         src={thumbnail ? `${thumbnail.path}.${thumbnail.extension}` : undefined}
         alt={title}
       />
-      <h3 className="card--name">{shortenString(title)}</h3>
+      <h3 className="card--name">{shortenString(title, 32)}</h3>
     </div>
   );
 };
