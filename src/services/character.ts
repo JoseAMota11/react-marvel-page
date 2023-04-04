@@ -9,6 +9,7 @@ type Options = {
   hash: string;
   offset: number;
   nameStartsWith?: string;
+  comics?: number;
 };
 
 const request = {
@@ -42,6 +43,24 @@ export const getCharacterByName = async (offset: number, name?: string) => {
 
   if (name) {
     options.nameStartsWith = name;
+  }
+
+  const url = `${URL}/characters`;
+  const characters = await get<Marvel>(url, request, options);
+  return characters;
+};
+
+export const getCharacterByComics = async (offset: number, comicId: number) => {
+  const options: Options = {
+    limit: LIMIT,
+    ts: 1,
+    apikey: PUBLIC_KEY,
+    hash: HASH,
+    offset,
+  };
+
+  if (comicId !== 0) {
+    options.comics = comicId;
   }
 
   const url = `${URL}/characters`;
