@@ -21,20 +21,4 @@
   &--card__container {
     @include grid($gap: 1rem);
   }
-
-  // @media (max-width: $screen-breakpoint-biggest) {
-  //   width: $width-medium;
-  // }
-
-  // @media (max-width: $screen-breakpoint-bigger) {
-  //   width: $width-small;
-  // }
-
-  // @media (max-width: $screen-breakpoint-big) {
-  //   width: $width-smaller;
-  // }
-
-  // @media (max-width: $screen-breakpoint-medium) {
-  //   width: 100%;
-  // }
 }

@@ -4,9 +4,7 @@
 @use './scss/base/base';
 @use './scss/base/resets';
 @use '../src/components/organisms/Navbar/navbar';
-@use '../src/components/templates/Characters/characters';
-@use '../src/components/templates/Comics/comics';
-@use '../src/components/templates/Stories/stories';
+@use '../src/components/templates/sections';
 @use '../src/components/templates/detail-page';
 @use '../src/components/modules/cards';
 @use '../src/components/atoms/Filter/filter';

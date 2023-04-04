@@ -1,7 +1,7 @@
-@use '../../../scss/abstracts/mixins' as *;
-@use '../../../scss/abstracts/variables' as *;
+@use '../../scss/abstracts/mixins' as *;
+@use '../../scss/abstracts/variables' as *;
 
-.characters {
+.section {
   width: $width-big;
   @include flexbox($align: unset, $gap: 1rem);
   color: $primary-white;
