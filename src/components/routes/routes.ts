@@ -1,4 +1,4 @@
-enum Route {
+enum Routes {
   Home = '/',
   Characters = '/characters',
   DetailPageCharacter = '/characters/:id',
@@ -8,4 +8,4 @@ enum Route {
   DetailPageStories = '/stories/:id',
 }
 
-export default Route;
+export default Routes;

@@ -1,10 +1,10 @@
 import { isNull } from 'lodash';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Result } from '../../../interface/stories';
-import Loading from '../../atoms/Loading/Loading';
-import { getOneStoriesById } from '../../../services/story.services';
-import { IMAGE_NOT_FOUND, shortenString } from '../../../helpers/constants';
+import { Result } from '../../interface/stories';
+import Loading from '../../components/atoms/Loading/Loading';
+import { getOneStoriesById } from '../../services/story.services';
+import { IMAGE_NOT_FOUND, shortenString } from '../../helpers/constants';
 
 const DetailPageCharacters = () => {
   const { id } = useParams();
@@ -22,7 +22,7 @@ const DetailPageCharacters = () => {
   }, []);
 
   return (
-    <div className="center--section">
+    <div>
       {data.length > 0 ? (
         data.map(({ title, thumbnail, description, id: key }: Result) => (
           <div key={key} className="details">

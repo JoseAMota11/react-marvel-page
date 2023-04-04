@@ -52,25 +52,23 @@ const Stories = () => {
   }
 
   return (
-    <div className="center--section">
-      <section className="section">
-        <h2 className="section--title">Comics</h2>
-        <div className="section--card__container">
-          {selectorCharacter.length > 0 ? (
-            selectorCharacter.map(({ thumbnail, title, id }) => (
-              <Card
-                key={id}
-                id={id}
-                thumbnail={isNull(thumbnail) ? null : thumbnail}
-                title={title}
-              />
-            ))
-          ) : (
-            <NoResults message="comics" />
-          )}
-        </div>
-      </section>
-    </div>
+    <section className="section">
+      <h2 className="section--title">Comics</h2>
+      <div className="section--card__container">
+        {selectorCharacter.length > 0 ? (
+          selectorCharacter.map(({ thumbnail, title, id }) => (
+            <Card
+              key={id}
+              id={id}
+              thumbnail={isNull(thumbnail) ? null : thumbnail}
+              title={title}
+            />
+          ))
+        ) : (
+          <NoResults message="comics" />
+        )}
+      </div>
+    </section>
   );
 };
 

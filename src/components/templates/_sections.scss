@@ -9,6 +9,7 @@
 
   &--title {
     font-size: $font-size-medium;
+    align-self: flex-start;
   }
 
   &--card__container {
@@ -17,32 +18,29 @@
 
     @media (max-width: $screen-breakpoint-biggest) {
       width: $width-medium;
-      grid-template-columns: repeat(3, 200px);
     }
 
     @media (max-width: $screen-breakpoint-bigger) {
       width: $width-small;
-      grid-template-columns: repeat(2, 250px);
-    }
-
-    @media (max-width: $screen-breakpoint-big) {
-      width: $width-smaller;
-      grid-template-columns: repeat(2, 270px);
-    }
-
-    @media (max-width: $screen-breakpoint-medium) {
-      width: 100%;
-      grid-template-columns: repeat(2, 230px);
+      grid-template-columns: repeat(2, 1fr);
     }
 
     @media (max-width: $screen-breakpoint-small) {
       width: 100%;
-      grid-template-columns: repeat(1, 100%);
+      grid-template-columns: repeat(1, 1fr);
     }
   }
 
   @media (max-width: $screen-breakpoint-biggest) {
-    width: 100%;
+    width: $width-medium;
     @include flexbox($align: center, $gap: 1rem);
+  }
+
+  @media (max-width: $screen-breakpoint-bigger) {
+    width: $width-small;
+  }
+
+  @media (max-width: $screen-breakpoint-small) {
+    width: 100%;
   }
 }

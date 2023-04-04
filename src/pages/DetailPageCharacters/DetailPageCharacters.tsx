@@ -1,9 +1,8 @@
-import { isNull } from 'lodash';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Result } from '../../../interface/comics';
-import Loading from '../../atoms/Loading/Loading';
-import { getOneComicById } from '../../../services/comic.services';
+import { getOneCharacterById } from '../../services/character.services';
+import { Result } from '../../interface/characters';
+import Loading from '../../components/atoms/Loading/Loading';
 
 const DetailPageCharacters = () => {
   const { id } = useParams();
@@ -14,38 +13,36 @@ const DetailPageCharacters = () => {
       if (id) {
         const {
           data: { results },
-        } = await getOneComicById(parseInt(id, 10));
+        } = await getOneCharacterById(parseInt(id, 10));
         setData(results);
       }
     })();
   }, []);
 
   return (
-    <div className="center--section">
+    <div>
       {data.length > 0 ? (
         data.map(
           ({
-            title,
+            name,
             thumbnail: { path, extension },
             description,
             id: key,
           }: Result) => (
             <div key={key} className="details">
-              <Link className="details--back" to="/comics">
+              <Link className="details--back" to="/characters">
                 Back
               </Link>
-              <h3 className="details--name">{title}</h3>
+              <h3 className="details--name">{name}</h3>
               <img
                 className="details--image"
                 src={`${path}.${extension}`}
-                alt={title}
+                alt={name}
               />
               <div className="details--description">
                 <h3>Description</h3>
                 <p className="details--description__item">
-                  {isNull(description) || description.length <= 0
-                    ? 'No description'
-                    : description}
+                  {description.length <= 0 ? 'No description' : description}
                 </p>
               </div>
             </div>

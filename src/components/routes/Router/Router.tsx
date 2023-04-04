@@ -1,98 +1,69 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Route from '../routes';
-import { FilterProps } from '../../atoms/Filter/Filter';
-
-type RouteProps = {
-  Home: () => JSX.Element;
-  Navbar: () => JSX.Element;
-  Characters: () => JSX.Element;
-  Comics: () => JSX.Element;
-  Stories: () => JSX.Element;
-  Filter: ({ section }: FilterProps) => JSX.Element;
-  DetailPageCharacters: () => JSX.Element;
-  DetailPageComics: () => JSX.Element;
-  DetailPageStories: () => JSX.Element;
-};
-
-const Router = ({
-  Home,
-  Navbar,
-  Characters,
-  Comics,
-  Stories,
-  Filter,
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from 'react-router-dom';
+import RoutesEnum from '../routes';
+import Filter from '../../atoms/Filter/Filter';
+import {
   DetailPageCharacters,
   DetailPageComics,
   DetailPageStories,
-}: RouteProps) => {
-  const router = createBrowserRouter([
-    {
-      path: Route.Home,
-      element: (
-        <>
-          <Navbar />
-          <Home />
-        </>
-      ),
-    },
-    {
-      path: Route.Characters,
-      element: (
-        <>
-          <Navbar />
-          <Filter section="CHARACTERS" />
-          <Characters />
-        </>
-      ),
-    },
-    {
-      path: Route.DetailPageCharacter,
-      element: (
-        <>
-          <Navbar />
-          <DetailPageCharacters />
-        </>
-      ),
-    },
-    {
-      path: Route.Comics,
-      element: (
-        <>
-          <Navbar />
-          <Filter section="COMICS" />
-          <Comics />
-        </>
-      ),
-    },
-    {
-      path: Route.DetailPageComics,
-      element: (
-        <>
-          <Navbar />
-          <DetailPageComics />
-        </>
-      ),
-    },
-    {
-      path: Route.Stories,
-      element: (
-        <>
-          <Navbar />
-          <Filter section="STORIES" />
-          <Stories />
-        </>
-      ),
-    },
-    {
-      path: Route.DetailPageStories,
-      element: (
-        <>
-          <Navbar />
-          <DetailPageStories />
-        </>
-      ),
-    },
-  ]);
+  Home,
+} from '../../../pages';
+import Characters from '../../templates/Characters/Characters';
+import Comics from '../../templates/Comics/Comics';
+import Stories from '../../templates/Stories/Stories';
+import RootLayouts from '../../layouts/RootLayouts';
+
+const Router = () => {
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path={RoutesEnum.Home} element={<RootLayouts />}>
+        <Route path={RoutesEnum.Home} element={<Home />} index />
+        <Route
+          path={RoutesEnum.Characters}
+          element={(
+            <>
+              <Filter section="CHARACTERS" />
+              <Characters />
+            </>
+          )}
+        />
+        <Route
+          path={RoutesEnum.DetailPageCharacter}
+          element={<DetailPageCharacters />}
+        />
+        <Route
+          path={RoutesEnum.Comics}
+          element={(
+            <>
+              <Filter section="COMICS" />
+              <Comics />
+            </>
+          )}
+        />
+        <Route
+          path={RoutesEnum.DetailPageComics}
+          element={<DetailPageComics />}
+        />
+        <Route
+          path={RoutesEnum.Stories}
+          element={(
+            <>
+              <Filter section="STORIES" />
+              <Stories />
+            </>
+          )}
+        />
+        <Route
+          path={RoutesEnum.DetailPageStories}
+          element={<DetailPageStories />}
+        />
+      </Route>
+    )
+  );
 
   return <RouterProvider router={router} />;
 };
