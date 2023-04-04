@@ -14,5 +14,35 @@
   &--card__container {
     @include grid($gap: 1rem);
     grid-template-columns: repeat(3, 1fr);
+
+    @media (max-width: $screen-breakpoint-biggest) {
+      width: $width-medium;
+      grid-template-columns: repeat(3, 200px);
+    }
+
+    @media (max-width: $screen-breakpoint-bigger) {
+      width: $width-small;
+      grid-template-columns: repeat(2, 250px);
+    }
+
+    @media (max-width: $screen-breakpoint-big) {
+      width: $width-smaller;
+      grid-template-columns: repeat(2, 270px);
+    }
+
+    @media (max-width: $screen-breakpoint-medium) {
+      width: 100%;
+      grid-template-columns: repeat(2, 230px);
+    }
+
+    @media (max-width: $screen-breakpoint-small) {
+      width: 100%;
+      grid-template-columns: repeat(1, 100%);
+    }
+  }
+
+  @media (max-width: $screen-breakpoint-biggest) {
+    width: 100%;
+    @include flexbox($align: center, $gap: 1rem);
   }
 }
