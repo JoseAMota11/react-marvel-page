@@ -1,4 +1,4 @@
-import { Result } from '../../interface/marvel';
+import { Result } from '../../interface/characters';
 
 const fetcherCharactersAction = (data: Result[]) => ({
   type: 'API/CHARACTERS',

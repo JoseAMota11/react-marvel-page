@@ -9,7 +9,7 @@ type RouteProps = {
   Comics: () => JSX.Element;
   Stories: () => JSX.Element;
   Filter: ({ section }: FilterProps) => JSX.Element;
-  DetailPage: () => JSX.Element;
+  DetailPageCharacters: () => JSX.Element;
 };
 
 const Router = ({
@@ -19,7 +19,7 @@ const Router = ({
   Comics,
   Stories,
   Filter,
-  DetailPage,
+  DetailPageCharacters,
 }: RouteProps) => {
   const router = createBrowserRouter([
     {
@@ -46,7 +46,7 @@ const Router = ({
       element: (
         <>
           <Navbar />
-          <DetailPage />
+          <DetailPageCharacters />
         </>
       ),
     },

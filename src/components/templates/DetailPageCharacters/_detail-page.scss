@@ -1,0 +1,30 @@
+@use '../../../scss/abstracts/mixins' as *;
+@use '../../../scss/abstracts/variables' as *;
+
+.details {
+  width: $width-big;
+  @include grid($gap: 1rem);
+  grid-template-columns: repeat(2, 1fr);
+  color: $primary-white;
+  padding: $padding-small 0;
+
+  &--back,
+  &--name {
+    font-size: $font-size-medium;
+    color: $primary-white;
+    font-weight: 500;
+  }
+
+  &--name {
+    grid-column: 2 / 3;
+    justify-self: end;
+  }
+
+  &--description {
+    align-self: flex-start;
+
+    &__item {
+      text-align: justify;
+    }
+  }
+}

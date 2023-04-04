@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Result } from '../../../interface/marvel';
+import { Result } from '../../../interface/characters';
 import Route from '../../routes/routes';
 
 const Card = ({ name, thumbnail, id }: Partial<Result>) => {

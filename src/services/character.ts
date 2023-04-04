@@ -1,6 +1,6 @@
 import { LIMIT, HASH, PUBLIC_KEY, URL } from '../helpers/constants';
 import get from '../helpers/fetchInfo';
-import { Marvel } from '../interface/marvel';
+import { Marvel } from '../interface/characters';
 
 type Options = {
   limit: number;
@@ -63,5 +63,16 @@ export const getCharacterByStories = async (storiesId: number) => {
 
   const url = `${URL}/characters`;
   const characters = await get<Marvel>(url, request, options);
+  return characters;
+};
+
+export const getOneCharacterById = async (characterId: number) => {
+  const detailsOptions = {
+    ts: 1,
+    apikey: PUBLIC_KEY,
+    hash: HASH,
+  };
+  const url = `${URL}/characters/${characterId}`;
+  const characters = await get<Marvel>(url, request, detailsOptions);
   return characters;
 };

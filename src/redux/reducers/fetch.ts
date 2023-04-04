@@ -1,4 +1,4 @@
-import { Result } from '../../interface/marvel';
+import { Result } from '../../interface/characters';
 
 type ActionType = {
   type: 'API/CHARACTERS' | '';

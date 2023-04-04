@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCharacter } from '../../../services/character';
 import fetcherCharactersAction from '../../../redux/actions/fetcher';
-import { Result } from '../../../interface/marvel';
+import { Result } from '../../../interface/characters';
 import Card from '../../modules/Card/Card';
 import Loading from '../../atoms/Loading/Loading';
 import NoResults from '../../atoms/NoResults/NoResults';
