@@ -6,6 +6,7 @@ import {
   Router,
   Stories,
 } from './components';
+import DetailPage from './components/templates/DetailPage/DetailPage';
 import { Home } from './pages';
 
 const App = () => (
@@ -17,6 +18,7 @@ const App = () => (
       Comics={Comics}
       Stories={Stories}
       Filter={Filter}
+      DetailPage={DetailPage}
     />
   </div>
 );

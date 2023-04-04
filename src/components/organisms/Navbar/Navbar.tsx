@@ -15,7 +15,7 @@ const Navbar = () => (
       <li className="navbar--list__item">
         <NavLink
           className={({ isActive }) => (isActive ? 'active' : 'link')}
-          to={Route.Character}
+          to={Route.Characters}
         >
           Characters
         </NavLink>

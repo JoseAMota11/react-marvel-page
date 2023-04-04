@@ -55,7 +55,7 @@ const Characters = () => {
         <div className="characters--card__container">
           {selectorCharacter.length > 0 ? (
             selectorCharacter.map(({ thumbnail, name, id }) => (
-              <Card key={id} thumbnail={thumbnail} name={name} />
+              <Card key={id} id={id} thumbnail={thumbnail} name={name} />
             ))
           ) : (
             <NoResults message="characters" />
