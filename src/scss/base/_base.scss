@@ -11,4 +11,8 @@ body {
 
 .center--section {
   @include flexbox();
+
+  @media (max-width: $screen-breakpoint-medium) {
+    padding: 0 $padding-small;
+  }
 }
