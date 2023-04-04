@@ -25,5 +25,44 @@
       border-radius: $border-radius-small;
       background-color: $primary-white;
     }
+
+    @media (max-width: $screen-breakpoint-biggest) {
+      grid-template-columns: repeat(3, 200px);
+    }
+
+    @media (max-width: $screen-breakpoint-bigger) {
+      grid-template-columns: repeat(2, 250px);
+    }
+
+    @media (max-width: $screen-breakpoint-big) {
+      grid-template-columns: repeat(2, 270px);
+    }
+
+    @media (max-width: $screen-breakpoint-medium) {
+      grid-template-columns: repeat(2, 230px);
+    }
+
+    @media (max-width: $screen-breakpoint-small) {
+      grid-template-columns: repeat(1, 100%);
+    }
+  }
+  @media (max-width: $screen-breakpoint-biggest) {
+    width: $width-medium;
+  }
+
+  @media (max-width: $screen-breakpoint-bigger) {
+    width: $width-small;
+  }
+
+  @media (max-width: $screen-breakpoint-big) {
+    width: $width-smaller;
+  }
+
+  @media (max-width: $screen-breakpoint-medium) {
+    width: 100%;
+  }
+
+  @media (max-width: $screen-breakpoint-small) {
+    width: 100%;
   }
 }
