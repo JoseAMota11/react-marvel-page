@@ -10,7 +10,7 @@ import {
   getCharacterByName,
   getCharacterByStories,
 } from '../../../services/character';
-import { getComicsByFormat } from '../../../services/comic';
+import { getComicsByFormat, getComicsByTitle } from '../../../services/comic';
 
 export type FilterProps = {
   section: 'CHARACTERS' | 'COMICS' | 'STORIES';
@@ -32,6 +32,22 @@ const Filter = ({ section }: FilterProps) => {
   };
 
   const debounceChange = debounce(handleChangeFilterByName, 500);
+
+  const handleChangeFilterByTitle = async (
+    e: ChangeEvent<HTMLInputElement>
+  ) => {
+    try {
+      const { value } = e.target;
+      const {
+        data: { results },
+      } = await getComicsByTitle(value);
+      dispatch(fetcherComicsAction(results));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const debounceChangeTitle = debounce(handleChangeFilterByTitle, 500);
 
   const handleChangeSelectComics = async (
     e: ChangeEvent<HTMLSelectElement>
@@ -168,6 +184,7 @@ const Filter = ({ section }: FilterProps) => {
               className="filter--input"
               type="search"
               placeholder="E.g. Marvel Previews (2017)"
+              onChange={debounceChangeTitle}
             />
           </div>
         ) : null}

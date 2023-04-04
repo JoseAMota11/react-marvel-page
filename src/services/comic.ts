@@ -84,3 +84,13 @@ export const getComicsByFormat = async (format: string) => {
   const comics = await get<Comic>(url, request, options);
   return comics;
 };
+
+export const getComicsByTitle = async (titleStartsWith: string) => {
+  if (titleStartsWith.length > 0) {
+    options.titleStartsWith = titleStartsWith;
+  } else delete options.titleStartsWith;
+  const url = `${URL}/comics`;
+
+  const comics = await get<Comic>(url, request, options);
+  return comics;
+};
