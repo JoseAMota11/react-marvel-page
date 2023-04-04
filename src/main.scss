@@ -7,3 +7,5 @@
 @use '../src/components/templates/Characters/characters';
 @use '../src/components/modules/Card/card';
 @use '../src/components/atoms/Filter/filter';
+@use '../src/components/atoms/Loading/loading';
+@use '../src/components/atoms/NoResults/no-results';

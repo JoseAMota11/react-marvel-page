@@ -5,6 +5,7 @@ import fetcherCharactersAction from '../../../redux/actions/fetcher';
 import {
   getCharacterByComics,
   getCharacterByName,
+  getCharacterByStories,
 } from '../../../services/character';
 
 export type FilterProps = {
@@ -13,7 +14,6 @@ export type FilterProps = {
 
 const Filter = ({ section }: FilterProps) => {
   const [offset] = useState(0);
-  const [comicId, setComicId] = useState(0);
   const dispatch = useDispatch();
 
   const handleChangeFilterByName = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +21,7 @@ const Filter = ({ section }: FilterProps) => {
       const { value } = e.target;
       const {
         data: { results },
-      } = await getCharacterByName(offset, value);
+      } = await getCharacterByName(value);
       dispatch(fetcherCharactersAction(results));
     } catch (error) {
       console.error(error);
@@ -37,7 +37,18 @@ const Filter = ({ section }: FilterProps) => {
     const id = parseInt(value);
     const {
       data: { results },
-    } = await getCharacterByComics(offset, id);
+    } = await getCharacterByComics(id);
+    dispatch(fetcherCharactersAction(results));
+  };
+
+  const handleChangeSelectStories = async (
+    e: ChangeEvent<HTMLSelectElement>
+  ) => {
+    const { value } = e.target;
+    const id = parseInt(value);
+    const {
+      data: { results },
+    } = await getCharacterByStories(id);
     dispatch(fetcherCharactersAction(results));
   };
 
@@ -73,9 +84,52 @@ const Filter = ({ section }: FilterProps) => {
               <option value="11">X-Men (2004) #164</option>
               <option value="12">Ultimate Spider-Man (2000) #68</option>
             </select>
-            <select className="filter--select">
-              <option value="default">Stories (Default)</option>
-              <option value="test">Test</option>
+            <select
+              className="filter--select"
+              onChange={handleChangeSelectStories}
+            >
+              <option value="0">Stories (Default)</option>
+              <option value="7">
+                Investigating the murder of a teenage girl, Cage suddenly learns
+                that a three-way gang war is under way for control of the turf
+              </option>
+              <option value="8">
+                In the wake of September 11th, the world watched as
+                firefighters, police officers and EMT workers selflessly risked
+                their lives
+              </option>
+              <option value="9">
+                Ordinary New York City cop Frankie &QUOT;Gunz&QUOT; Gunzer now
+                has a new call to duty Ñ not just to uphold the law, but to save
+              </option>
+              <option value="10">
+                In this thought-provoking anthology, a world-class collection of
+                top comic-book creators from around the globe presents a series
+              </option>
+              <option value="11">Interior #11</option>
+              <option value="12">
+                Presenting visionary writer/artist Frank Miller's unique take on
+                the world-famous wall-crawler Ñ including appearances by the Pu
+              </option>
+              <option value="14">
+                Karen Page, Daredevil's former lover, trades away Daredevil's
+                identity for a drug fix. Matt Murdock must find strength as the
+                K
+              </option>
+              <option value="15">
+                This classic tale explores Matt Murdock's formative years Ñ
+                detailing the relationship between him and his father, and the
+                event
+              </option>
+              <option value="16">
+                Frank Miller's Daredevil submerged us in a world where heroes,
+                pushed to the brink of madness, were allowed to mirror the human
+              </option>
+              <option value="17">
+                This volume features the gritty, street-level action and moody
+                atmosphere that made Miller's Daredevil classic Ñ including
+                appea
+              </option>
             </select>
           </div>
         ) : null}
