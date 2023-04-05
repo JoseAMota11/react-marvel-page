@@ -20,22 +20,13 @@ const Characters = () => {
   );
 
   useEffect(() => {
-    const timeOut = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-
-    return () => {
-      clearTimeout(timeOut);
-    };
-  }, []);
-
-  useEffect(() => {
     (async function getData() {
       try {
         const {
           data: { results },
         } = await getCharacter(offset);
         dispatch(fetcherCharactersAction(results));
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }

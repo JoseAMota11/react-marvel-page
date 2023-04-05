@@ -21,22 +21,13 @@ const Stories = () => {
   );
 
   useEffect(() => {
-    const timeOut = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-
-    return () => {
-      clearTimeout(timeOut);
-    };
-  }, []);
-
-  useEffect(() => {
     (async function getData() {
       try {
         const {
           data: { results },
         } = await getStories(offset);
         dispatch(fetcherStoriesAction(results));
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }

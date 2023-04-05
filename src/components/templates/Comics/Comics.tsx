@@ -20,22 +20,13 @@ const Comics = () => {
   );
 
   useEffect(() => {
-    const timeOut = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-
-    return () => {
-      clearTimeout(timeOut);
-    };
-  }, []);
-
-  useEffect(() => {
     (async function getData() {
       try {
         const {
           data: { results },
         } = await getComics(offset);
         dispatch(fetcherComicsAction(results));
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
