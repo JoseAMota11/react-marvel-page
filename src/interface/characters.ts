@@ -1,4 +1,4 @@
-export interface Marvel {
+export interface Characters {
   code: number;
   status: string;
   copyright: string;

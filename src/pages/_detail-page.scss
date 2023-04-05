@@ -1,5 +1,5 @@
-@use '../../scss/abstracts/mixins' as *;
-@use '../../scss/abstracts/variables' as *;
+@use '../scss/abstracts/mixins' as *;
+@use '../scss/abstracts/variables' as *;
 
 .details {
   width: $width-big;
@@ -37,6 +37,15 @@
 
     &__item {
       text-align: justify;
+    }
+  }
+
+  &--info {
+    grid-column: 1 / -1;
+
+    &__container {
+      @include grid($gap: 1rem);
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 

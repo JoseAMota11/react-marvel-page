@@ -1,6 +1,8 @@
 import { LIMIT, URL } from '../helpers/constants';
 import get from '../helpers/fetchInfo';
-import { Marvel } from '../interface/characters';
+import { Characters } from '../interface/characters';
+import { Comic } from '../interface/comics';
+import { Stories } from '../interface/stories';
 
 type Options = {
   limit: number;
@@ -25,7 +27,7 @@ const options: Options = {
 export const getCharacter = async (offset: number) => {
   options.offset = offset;
   const url = `${URL}/characters`;
-  const characters = await get<Marvel>(url, options);
+  const characters = await get<Characters>(url, options);
   return characters;
 };
 
@@ -36,7 +38,7 @@ export const getCharacterByName = async (name?: string) => {
   } else delete options.nameStartsWith;
 
   const url = `${URL}/characters`;
-  const characters = await get<Marvel>(url, options);
+  const characters = await get<Characters>(url, options);
   return characters;
 };
 
@@ -46,7 +48,7 @@ export const getCharacterByComics = async (comicId: number) => {
   } else delete options.comics;
 
   const url = `${URL}/characters`;
-  const characters = await get<Marvel>(url, options);
+  const characters = await get<Characters>(url, options);
   return characters;
 };
 
@@ -56,7 +58,7 @@ export const getCharacterByStories = async (storiesId: number) => {
   } else delete options.stories;
 
   const url = `${URL}/characters`;
-  const characters = await get<Marvel>(url, options);
+  const characters = await get<Characters>(url, options);
   return characters;
 };
 
@@ -67,6 +69,30 @@ export const getOneCharacterById = async (characterId: number) => {
     hash: import.meta.env.VITE_HASH,
   };
   const url = `${URL}/characters/${characterId}`;
-  const characters = await get<Marvel>(url, detailsOptions);
+  const characters = await get<Characters>(url, detailsOptions);
+  return characters;
+};
+
+export const getCharacterComics = async (characterId: number) => {
+  const detailsOptions = {
+    ts: 1,
+    apikey: import.meta.env.VITE_PUBLIC_KEY,
+    hash: import.meta.env.VITE_HASH,
+    limit: 3,
+  };
+  const url = `${URL}/characters/${characterId}/comics`;
+  const characters = await get<Comic>(url, detailsOptions);
+  return characters;
+};
+
+export const getCharacterStories = async (characterId: number) => {
+  const detailsOptions = {
+    ts: 1,
+    apikey: import.meta.env.VITE_PUBLIC_KEY,
+    hash: import.meta.env.VITE_HASH,
+    limit: 3,
+  };
+  const url = `${URL}/characters/${characterId}/stories`;
+  const characters = await get<Stories>(url, detailsOptions);
   return characters;
 };

@@ -1,20 +1,39 @@
+import { isNull } from 'lodash';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { getOneCharacterById } from '../../services/character.services';
+import {
+  getCharacterComics,
+  getCharacterStories,
+  getOneCharacterById,
+} from '../../services/character.services';
 import { Result } from '../../interface/characters';
+import { Result as CharacterComicResult } from '../../interface/comics';
+import { Result as CharacterStoriesResult } from '../../interface/stories';
 import Loading from '../../components/atoms/Loading/Loading';
+import CardComics from '../../components/modules/CardComics/Card';
+import CardStories from '../../components/modules/CardStories/Card';
 
 const DetailPageCharacters = () => {
-  const { id } = useParams();
+  const { id: characterId } = useParams();
   const [data, setData] = useState<Result[]>([]);
+  const [comics, setComics] = useState<CharacterComicResult[]>([]);
+  const [stories, setStories] = useState<CharacterStoriesResult[]>([]);
 
   useEffect(() => {
     (async function getOneCharacter() {
-      if (id) {
+      if (characterId) {
         const {
-          data: { results },
-        } = await getOneCharacterById(parseInt(id, 10));
-        setData(results);
+          data: { results: singleCharacter },
+        } = await getOneCharacterById(parseInt(characterId, 10));
+        const {
+          data: { results: characterComics },
+        } = await getCharacterComics(parseInt(characterId, 10));
+        const {
+          data: { results: characterStories },
+        } = await getCharacterStories(parseInt(characterId, 10));
+        setData(singleCharacter);
+        setComics(characterComics);
+        setStories(characterStories);
       }
     })();
   }, []);
@@ -44,6 +63,38 @@ const DetailPageCharacters = () => {
                 <p className="details--description__item">
                   {description.length <= 0 ? 'No description' : description}
                 </p>
+              </div>
+              <div className="details--info">
+                <h3 className="details--info__title">Comics</h3>
+                <div className="details--info__container">
+                  {comics.length > 0 ? (
+                    comics.map(({ title, id, thumbnail }) => (
+                      <CardComics
+                        key={id}
+                        id={id}
+                        thumbnail={thumbnail}
+                        title={title}
+                      />
+                    ))
+                  ) : (
+                    <p>No comics</p>
+                  )}
+                </div>
+                <h3 className="details--info__title">Stories</h3>
+                <div className="details--info__container">
+                  {stories.length > 0 ? (
+                    stories.map(({ title, id, thumbnail }) => (
+                      <CardStories
+                        key={id}
+                        id={id}
+                        thumbnail={isNull(thumbnail) ? null : thumbnail}
+                        title={title}
+                      />
+                    ))
+                  ) : (
+                    <p>No stories</p>
+                  )}
+                </div>
               </div>
             </div>
           )

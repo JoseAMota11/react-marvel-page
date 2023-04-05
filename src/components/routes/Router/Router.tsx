@@ -24,12 +24,12 @@ const Router = () => {
         <Route path={RoutesEnum.Home} element={<Home />} index />
         <Route
           path={RoutesEnum.Characters}
-          element={(
+          element={
             <>
               <Filter section="CHARACTERS" />
               <Characters />
             </>
-          )}
+          }
         />
         <Route
           path={RoutesEnum.DetailPageCharacter}
@@ -37,12 +37,12 @@ const Router = () => {
         />
         <Route
           path={RoutesEnum.Comics}
-          element={(
+          element={
             <>
               <Filter section="COMICS" />
               <Comics />
             </>
-          )}
+          }
         />
         <Route
           path={RoutesEnum.DetailPageComics}
@@ -50,12 +50,12 @@ const Router = () => {
         />
         <Route
           path={RoutesEnum.Stories}
-          element={(
+          element={
             <>
               <Filter section="STORIES" />
               <Stories />
             </>
-          )}
+          }
         />
         <Route
           path={RoutesEnum.DetailPageStories}
