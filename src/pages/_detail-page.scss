@@ -47,6 +47,14 @@
       @include grid($gap: 1rem);
       grid-template-columns: repeat(3, 1fr);
       margin: $margin-small 0;
+
+      @media (max-width: $screen-breakpoint-biggest) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: $screen-breakpoint-small) {
+        grid-template-columns: repeat(1, 1fr);
+      }
     }
   }
 
