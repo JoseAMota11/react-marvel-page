@@ -1,6 +1,8 @@
 import { LIMIT, URL } from '../helpers/constants';
 import get from '../helpers/fetchInfo';
 import { Stories } from '../interface/stories';
+import { Characters } from '../interface/characters';
+import { Comic } from '../interface/comics';
 
 type Options = {
   modifiedSince: Date;
@@ -51,5 +53,29 @@ export const getOneStoriesById = async (stories: number) => {
 
   const url = `${URL}/stories/${stories}`;
   const comics = await get<Stories>(url, detailsOptions);
+  return comics;
+};
+
+export const getStoriesCharacters = async (stories: number) => {
+  const detailsOptions = {
+    ts: 1,
+    apikey: import.meta.env.VITE_PUBLIC_KEY,
+    hash: import.meta.env.VITE_HASH,
+  };
+
+  const url = `${URL}/stories/${stories}/characters`;
+  const comics = await get<Characters>(url, detailsOptions);
+  return comics;
+};
+
+export const getStoriesComics = async (stories: number) => {
+  const detailsOptions = {
+    ts: 1,
+    apikey: import.meta.env.VITE_PUBLIC_KEY,
+    hash: import.meta.env.VITE_HASH,
+  };
+
+  const url = `${URL}/stories/${stories}/comics`;
+  const comics = await get<Comic>(url, detailsOptions);
   return comics;
 };
