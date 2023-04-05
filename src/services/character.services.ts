@@ -1,4 +1,4 @@
-import { LIMIT, HASH, PUBLIC_KEY, URL } from '../helpers/constants';
+import { LIMIT, URL } from '../helpers/constants';
 import get from '../helpers/fetchInfo';
 import { Marvel } from '../interface/characters';
 
@@ -14,24 +14,18 @@ type Options = {
   orderBy?: 'name' | 'modified' | '-name' | '-modified';
 };
 
-const request = {
-  headers: {
-    'Content-Type': 'application/json; charset=utf-8',
-  },
-};
-
 const options: Options = {
   limit: LIMIT,
   ts: 1,
-  apikey: PUBLIC_KEY,
-  hash: HASH,
+  apikey: import.meta.env.VITE_PUBLIC_KEY,
+  hash: import.meta.env.VITE_HASH,
   offset: 0,
 };
 
 export const getCharacter = async (offset: number) => {
   options.offset = offset;
   const url = `${URL}/characters`;
-  const characters = await get<Marvel>(url, request, options);
+  const characters = await get<Marvel>(url, options);
   return characters;
 };
 
@@ -42,7 +36,7 @@ export const getCharacterByName = async (name?: string) => {
   } else delete options.nameStartsWith;
 
   const url = `${URL}/characters`;
-  const characters = await get<Marvel>(url, request, options);
+  const characters = await get<Marvel>(url, options);
   return characters;
 };
 
@@ -52,7 +46,7 @@ export const getCharacterByComics = async (comicId: number) => {
   } else delete options.comics;
 
   const url = `${URL}/characters`;
-  const characters = await get<Marvel>(url, request, options);
+  const characters = await get<Marvel>(url, options);
   return characters;
 };
 
@@ -62,17 +56,17 @@ export const getCharacterByStories = async (storiesId: number) => {
   } else delete options.stories;
 
   const url = `${URL}/characters`;
-  const characters = await get<Marvel>(url, request, options);
+  const characters = await get<Marvel>(url, options);
   return characters;
 };
 
 export const getOneCharacterById = async (characterId: number) => {
   const detailsOptions = {
     ts: 1,
-    apikey: PUBLIC_KEY,
-    hash: HASH,
+    apikey: import.meta.env.VITE_PUBLIC_KEY,
+    hash: import.meta.env.VITE_HASH,
   };
   const url = `${URL}/characters/${characterId}`;
-  const characters = await get<Marvel>(url, request, detailsOptions);
+  const characters = await get<Marvel>(url, detailsOptions);
   return characters;
 };

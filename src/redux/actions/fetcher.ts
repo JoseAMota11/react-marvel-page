@@ -1,8 +1,8 @@
-import { Result } from '../../interface/characters';
+import { Result as CharactersResult } from '../../interface/characters';
 import { Result as ComicsResult } from '../../interface/comics';
 import { Result as StoriesResult } from '../../interface/stories';
 
-export const fetcherCharactersAction = (data: Result[]) => ({
+export const fetcherCharactersAction = (data: CharactersResult[]) => ({
   type: 'API/CHARACTERS',
   payload: data,
 });

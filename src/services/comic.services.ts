@@ -1,4 +1,4 @@
-import { LIMIT, HASH, PUBLIC_KEY, URL } from '../helpers/constants';
+import { LIMIT, URL } from '../helpers/constants';
 import get from '../helpers/fetchInfo';
 import { Comic } from '../interface/comics';
 
@@ -54,24 +54,18 @@ type Options = {
     | '-modified';
 };
 
-const request = {
-  headers: {
-    'Content-Type': 'application/json; charset=utf-8',
-  },
-};
-
 const options: Partial<Options> = {
   limit: LIMIT,
   ts: 1,
-  apikey: PUBLIC_KEY,
-  hash: HASH,
+  apikey: import.meta.env.VITE_PUBLIC_KEY,
+  hash: import.meta.env.VITE_HASH,
 };
 
 export const getComics = async (offset: number) => {
   options.offset = offset;
   const url = `${URL}/comics`;
 
-  const comics = await get<Comic>(url, request, options);
+  const comics = await get<Comic>(url, options);
   return comics;
 };
 
@@ -81,7 +75,7 @@ export const getComicsByFormat = async (format: string) => {
   } else delete options.format;
   const url = `${URL}/comics`;
 
-  const comics = await get<Comic>(url, request, options);
+  const comics = await get<Comic>(url, options);
   return comics;
 };
 
@@ -91,18 +85,18 @@ export const getComicsByTitle = async (titleStartsWith: string) => {
   } else delete options.titleStartsWith;
   const url = `${URL}/comics`;
 
-  const comics = await get<Comic>(url, request, options);
+  const comics = await get<Comic>(url, options);
   return comics;
 };
 
 export const getOneComicById = async (comic: number) => {
   const detailsOptions = {
     ts: 1,
-    apikey: PUBLIC_KEY,
-    hash: HASH,
+    apikey: import.meta.env.VITE_PUBLIC_KEY,
+    hash: import.meta.env.VITE_HASH,
   };
 
   const url = `${URL}/comics/${comic}`;
-  const comics = await get<Comic>(url, request, detailsOptions);
+  const comics = await get<Comic>(url, detailsOptions);
   return comics;
 };
