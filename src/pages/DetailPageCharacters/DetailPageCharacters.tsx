@@ -6,18 +6,18 @@ import {
   getCharacterStories,
   getOneCharacterById,
 } from '../../services/character.services';
-import { Result } from '../../interface/characters';
-import { Result as CharacterComicResult } from '../../interface/comics';
-import { Result as CharacterStoriesResult } from '../../interface/stories';
+import { Result as CharacterResult } from '../../interface/characters';
+import { Result as ComicResult } from '../../interface/comics';
+import { Result as StoriesResult } from '../../interface/stories';
 import Loading from '../../components/atoms/Loading/Loading';
 import CardComics from '../../components/modules/CardComics/Card';
 import CardStories from '../../components/modules/CardStories/Card';
 
 const DetailPageCharacters = () => {
   const { id: characterId } = useParams();
-  const [data, setData] = useState<Result[]>([]);
-  const [comics, setComics] = useState<CharacterComicResult[]>([]);
-  const [stories, setStories] = useState<CharacterStoriesResult[]>([]);
+  const [characters, setCharacters] = useState<CharacterResult[]>([]);
+  const [comics, setComics] = useState<ComicResult[]>([]);
+  const [stories, setStories] = useState<StoriesResult[]>([]);
 
   useEffect(() => {
     (async function getOneCharacter() {
@@ -31,7 +31,7 @@ const DetailPageCharacters = () => {
         const {
           data: { results: characterStories },
         } = await getCharacterStories(parseInt(characterId, 10));
-        setData(singleCharacter);
+        setCharacters(singleCharacter);
         setComics(characterComics);
         setStories(characterStories);
       }
@@ -40,14 +40,14 @@ const DetailPageCharacters = () => {
 
   return (
     <div>
-      {data.length > 0 ? (
-        data.map(
+      {characters.length > 0 ? (
+        characters.map(
           ({
             name,
             thumbnail: { path, extension },
             description,
             id: key,
-          }: Result) => (
+          }: CharacterResult) => (
             <div key={key} className="details">
               <Link className="details--back" to="/characters">
                 Back

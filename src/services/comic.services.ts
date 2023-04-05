@@ -1,5 +1,7 @@
 import { LIMIT, URL } from '../helpers/constants';
 import get from '../helpers/fetchInfo';
+import { Characters } from '../interface/characters';
+import { Stories } from '../interface/stories';
 import { Comic } from '../interface/comics';
 
 type Options = {
@@ -98,5 +100,29 @@ export const getOneComicById = async (comic: number) => {
 
   const url = `${URL}/comics/${comic}`;
   const comics = await get<Comic>(url, detailsOptions);
+  return comics;
+};
+
+export const getComicCharacters = async (comic: number) => {
+  const detailsOptions = {
+    ts: 1,
+    apikey: import.meta.env.VITE_PUBLIC_KEY,
+    hash: import.meta.env.VITE_HASH,
+  };
+
+  const url = `${URL}/comics/${comic}/characters`;
+  const comics = await get<Characters>(url, detailsOptions);
+  return comics;
+};
+
+export const getComicStories = async (comic: number) => {
+  const detailsOptions = {
+    ts: 1,
+    apikey: import.meta.env.VITE_PUBLIC_KEY,
+    hash: import.meta.env.VITE_HASH,
+  };
+
+  const url = `${URL}/comics/${comic}/stories`;
+  const comics = await get<Stories>(url, detailsOptions);
   return comics;
 };
