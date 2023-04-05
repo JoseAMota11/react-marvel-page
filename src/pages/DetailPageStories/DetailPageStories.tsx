@@ -4,7 +4,8 @@ import { Link, useParams } from 'react-router-dom';
 import { Result } from '../../interface/stories';
 import Loading from '../../components/atoms/Loading/Loading';
 import { getOneStoriesById } from '../../services/story.services';
-import { IMAGE_NOT_FOUND, shortenString } from '../../helpers/constants';
+import { IMAGE_NOT_FOUND } from '../../helpers/constants';
+import addThreeDocs from '../../helpers/helperFuncs';
 
 const DetailPageCharacters = () => {
   const { id } = useParams();
@@ -29,7 +30,7 @@ const DetailPageCharacters = () => {
             <Link className="details--back" to="/stories">
               Back
             </Link>
-            <h3 className="details--name">{shortenString(title, 20)}</h3>
+            <h3 className="details--name">{addThreeDocs(title)}</h3>
             <img
               className="details--image"
               src={

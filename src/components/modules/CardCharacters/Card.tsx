@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Result } from '../../../interface/characters';
 import Route from '../../routes/routes';
-import { shortenString } from '../../../helpers/constants';
+import addThreeDocs from '../../../helpers/helperFuncs';
 
 const Card = ({ name, thumbnail, id }: Partial<Result>) => {
   const location = useNavigate();
@@ -16,7 +16,7 @@ const Card = ({ name, thumbnail, id }: Partial<Result>) => {
         src={thumbnail ? `${thumbnail.path}.${thumbnail.extension}` : undefined}
         alt={name}
       />
-      <h3 className="card--name">{shortenString(name, 32)}</h3>
+      <h3 className="card--name">{addThreeDocs(name)}</h3>
     </div>
   );
 };
