@@ -1,0 +1,21 @@
+@use '../../scss/abstracts/mixins' as *;
+@use '../../scss/abstracts/variables' as *;
+
+.bookmark {
+  color: $primary-white;
+
+  &--characters,
+  &--comics,
+  &--stories {
+    margin: $margin-medium 0;
+
+    h3 {
+      margin-bottom: $margin-small;
+    }
+
+    &__container {
+      @include grid($gap: 1rem);
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}

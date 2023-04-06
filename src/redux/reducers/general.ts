@@ -39,9 +39,9 @@ type ActionType = {
   characters: AppState['characters'];
   comics: AppState['comics'];
   stories: AppState['stories'];
-  bookmarkCharacters: CharactersResult;
-  bookmarkComics: ComicsResult;
-  bookmarkStories: StoriesResult;
+  bookmarkCharacters: CharactersResult[] | CharactersResult;
+  bookmarkComics: ComicsResult[] | ComicsResult;
+  bookmarkStories: StoriesResult[] | StoriesResult;
   id: number;
 };
 
