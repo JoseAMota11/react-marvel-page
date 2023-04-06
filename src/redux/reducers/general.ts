@@ -13,6 +13,7 @@ export type AppState = {
   bookmarkCharacters: CharactersResult[] | CharactersResult;
   bookmarkComics: ComicsResult[] | ComicsResult;
   bookmarkStories: StoriesResult[] | StoriesResult;
+  id: number;
 };
 
 type ActionType = {
@@ -26,7 +27,9 @@ type ActionType = {
     | 'BOOKMARK/ADD/CHARACTER'
     | 'BOOKMARK/ADD/COMIC'
     | 'BOOKMARK/ADD/STORY'
-    | 'BOOKMARK/DELETE_ONE'
+    | 'BOOKMARK/DELETE/CHARACTER'
+    | 'BOOKMARK/DELETE/COMIC'
+    | 'BOOKMARK/DELETE/STORY'
     | 'BOOKMARK/DELETE_ALL'
     | 'HIDE'
     | 'SHOW'
@@ -39,6 +42,7 @@ type ActionType = {
   bookmarkCharacters: CharactersResult;
   bookmarkComics: ComicsResult;
   bookmarkStories: StoriesResult;
+  id: number;
 };
 
 const initialValue: AppState = {
@@ -52,6 +56,7 @@ const initialValue: AppState = {
   bookmarkCharacters: [],
   bookmarkComics: [],
   bookmarkStories: [],
+  id: 0,
 };
 
 const paginationReducer = (state = initialValue, action: ActionType) => {
@@ -108,7 +113,36 @@ const paginationReducer = (state = initialValue, action: ActionType) => {
         };
       }
       return state.bookmarkStories;
-
+    case 'BOOKMARK/DELETE/CHARACTER':
+      if (Array.isArray(state.bookmarkCharacters)) {
+        return {
+          ...state,
+          bookmarkCharacters: state.bookmarkCharacters.filter(
+            ({ id }) => id !== action.id
+          ),
+        };
+      }
+      return state.bookmarkCharacters;
+    case 'BOOKMARK/DELETE/COMIC':
+      if (Array.isArray(state.bookmarkComics)) {
+        return {
+          ...state,
+          bookmarkComics: state.bookmarkComics.filter(
+            ({ id }) => id !== action.id
+          ),
+        };
+      }
+      return state.bookmarkComics;
+    case 'BOOKMARK/DELETE/STORY':
+      if (Array.isArray(state.bookmarkStories)) {
+        return {
+          ...state,
+          bookmarkStories: state.bookmarkStories.filter(
+            ({ id }) => id !== action.id
+          ),
+        };
+      }
+      return state.bookmarkStories;
     default:
       return state;
   }

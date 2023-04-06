@@ -6,7 +6,10 @@ import BookMarkOut from '../../../assets/bookmark-in.svg';
 import { Result } from '../../../interface/characters';
 import Route from '../../routes/routes';
 import addThreeDocs from '../../../helpers/helperFuncs';
-import { characterBookmarkAction } from '../../../redux/actions/general';
+import {
+  characterBookmarkAction,
+  characterBookmarkDeleteAction,
+} from '../../../redux/actions/general';
 
 const Card = ({ name, thumbnail, id, character }: Partial<Result>) => {
   const location = useNavigate();
@@ -19,8 +22,10 @@ const Card = ({ name, thumbnail, id, character }: Partial<Result>) => {
   const handleBookmark = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     setBookmark((prevState) => !prevState);
-    if (typeof character !== 'undefined') {
-      dispatch(characterBookmarkAction(character));
+    if (typeof character !== 'undefined' && typeof id !== 'undefined') {
+      if (bookmark) {
+        dispatch(characterBookmarkDeleteAction(id));
+      } else dispatch(characterBookmarkAction(character));
     }
   };
 

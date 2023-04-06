@@ -41,3 +41,18 @@ export const storiesBookmarkAction = (data: AppState['bookmarkStories']) => ({
   type: 'BOOKMARK/ADD/STORY',
   bookmarkStories: data,
 });
+
+export const characterBookmarkDeleteAction = (data: AppState['id']) => ({
+  type: 'BOOKMARK/DELETE/CHARACTER',
+  id: data,
+});
+
+export const comicBookmarkDeleteAction = (data: AppState['id']) => ({
+  type: 'BOOKMARK/DELETE/COMIC',
+  id: data,
+});
+
+export const storyBookmarkDeleteAction = (data: AppState['id']) => ({
+  type: 'BOOKMARK/DELETE/STORY',
+  id: data,
+});

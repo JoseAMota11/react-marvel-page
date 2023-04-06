@@ -7,7 +7,10 @@ import { Result } from '../../../interface/stories';
 import Route from '../../routes/routes';
 import { IMAGE_NOT_FOUND } from '../../../helpers/constants';
 import addThreeDocs from '../../../helpers/helperFuncs';
-import { storiesBookmarkAction } from '../../../redux/actions/general';
+import {
+  storiesBookmarkAction,
+  storyBookmarkDeleteAction,
+} from '../../../redux/actions/general';
 
 const Card = ({ title, id, thumbnail, stories }: Partial<Result>) => {
   const location = useNavigate();
@@ -20,8 +23,10 @@ const Card = ({ title, id, thumbnail, stories }: Partial<Result>) => {
   const handleBookmark = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     setBookmark((prevState) => !prevState);
-    if (typeof stories !== 'undefined') {
-      dispatch(storiesBookmarkAction(stories));
+    if (typeof stories !== 'undefined' && typeof id !== 'undefined') {
+      if (bookmark) {
+        dispatch(storyBookmarkDeleteAction(id));
+      } else dispatch(storiesBookmarkAction(stories));
     }
   };
 
