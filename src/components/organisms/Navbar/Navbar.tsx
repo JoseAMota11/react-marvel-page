@@ -1,5 +1,7 @@
 import { useRef } from 'react';
 import { NavLink } from 'react-router-dom';
+import BookMarkOut from '../../../assets/bookmark-in.svg';
+import HiddenIcon from '../../../assets/hide.svg';
 import Route from '../../routes/routes';
 
 const Navbar = () => {
@@ -47,6 +49,22 @@ const Navbar = () => {
             to={Route.Stories}
           >
             Stories
+          </NavLink>
+        </li>
+        <li className="navbar--list__item">
+          <NavLink
+            className={({ isActive }) => (isActive ? 'active' : 'link')}
+            to={Route.Hidden}
+          >
+            <img className="icon--hidden" src={HiddenIcon} alt="Bookmark" />
+          </NavLink>
+        </li>
+        <li className="navbar--list__item">
+          <NavLink
+            className={({ isActive }) => (isActive ? 'active' : 'link')}
+            to={Route.Bookmarks}
+          >
+            <img className="icon--bookmarks" src={BookMarkOut} alt="Bookmark" />
           </NavLink>
         </li>
       </ul>

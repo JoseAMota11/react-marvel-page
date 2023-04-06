@@ -16,6 +16,8 @@ import Characters from '../../templates/Characters/Characters';
 import Comics from '../../templates/Comics/Comics';
 import Stories from '../../templates/Stories/Stories';
 import RootLayouts from '../../layouts/RootLayouts';
+import Bookmarks from '../../../pages/Bookmarks/Bookmarks';
+import Hidden from '../../../pages/Hidden/Hidden';
 
 const Router = () => {
   const router = createBrowserRouter(
@@ -61,6 +63,8 @@ const Router = () => {
           path={RoutesEnum.DetailPageStories}
           element={<DetailPageStories />}
         />
+        <Route path={RoutesEnum.Bookmarks} element={<Bookmarks />} />
+        <Route path={RoutesEnum.Hidden} element={<Hidden />} />
       </Route>
     )
   );

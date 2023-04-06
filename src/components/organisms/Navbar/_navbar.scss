@@ -25,6 +25,14 @@
         text-transform: uppercase;
       }
 
+      .icon--hidden {
+        width: 30px;
+      }
+
+      .icon--bookmarks {
+        width: 25px;
+      }
+
       &:hover {
         background-color: rgba($color: $secondary-black, $alpha: 0.2);
       }
@@ -47,7 +55,7 @@
     @media (max-width: $screen-breakpoint-biggest) {
       width: $width-medium;
       display: none;
-      
+
       &.open {
         width: 100%;
         height: max-content;
@@ -58,7 +66,8 @@
         backdrop-filter: blur(1rem);
 
         & &__item {
-          .link, .active {
+          .link,
+          .active {
             padding: $padding-medium;
           }
         }

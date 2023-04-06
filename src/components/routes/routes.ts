@@ -6,6 +6,8 @@ enum Routes {
   DetailPageComics = '/comics/:id',
   Stories = '/stories',
   DetailPageStories = '/stories/:id',
+  Bookmarks = '/bookmarks',
+  Hidden = '/hidden',
 }
 
 export default Routes;
