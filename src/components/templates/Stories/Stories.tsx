@@ -6,10 +6,11 @@ import NoResults from '../../atoms/NoResults/NoResults';
 import Card from '../../modules/CardStories/Card';
 import { Result } from '../../../interface/stories';
 import { getStories } from '../../../services/story.services';
-import { fetcherStoriesAction } from '../../../redux/actions/fetcher';
+import { storiesAction } from '../../../redux/actions/general';
+import { AppState } from '../../../redux/reducers/general';
 
 type StateSelector = {
-  data: Result[];
+  app: AppState;
 };
 
 const Stories = () => {
@@ -17,7 +18,7 @@ const Stories = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const selectorCharacter = useSelector(
-    (state: StateSelector): Result[] => state.data
+    (state: StateSelector): Result[] => state.app.stories
   );
 
   useEffect(() => {
@@ -26,7 +27,7 @@ const Stories = () => {
         const {
           data: { results },
         } = await getStories(offset);
-        dispatch(fetcherStoriesAction(results));
+        dispatch(storiesAction(results));
         setLoading(false);
       } catch (error) {
         console.error(error);

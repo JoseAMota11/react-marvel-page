@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCharacter } from '../../../services/character.services';
-import { fetcherCharactersAction } from '../../../redux/actions/fetcher';
 import { Result } from '../../../interface/characters';
 import Card from '../../modules/CardCharacters/Card';
 import Loading from '../../atoms/Loading/Loading';
 import NoResults from '../../atoms/NoResults/NoResults';
+import { AppState } from '../../../redux/reducers/general';
+import { charactersAction } from '../../../redux/actions/general';
 
 type StateSelector = {
-  data: Result[];
+  app: AppState;
 };
 
 const Characters = () => {
@@ -16,7 +17,7 @@ const Characters = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const selectorCharacter = useSelector(
-    (state: StateSelector): Result[] => state.data
+    (state: StateSelector): Result[] => state.app.characters
   );
 
   useEffect(() => {
@@ -25,7 +26,7 @@ const Characters = () => {
         const {
           data: { results },
         } = await getCharacter(offset);
-        dispatch(fetcherCharactersAction(results));
+        dispatch(charactersAction(results));
         setLoading(false);
       } catch (error) {
         console.error(error);

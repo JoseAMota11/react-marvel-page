@@ -1,10 +1,9 @@
-import { Dispatch, SetStateAction } from 'react';
 import addConditionalClassName from '../../../helpers/addConditionalClassName';
 import { DOTS } from '../../../helpers/constants';
 import usePagination from '../../../hooks/usePagination';
 
 type PaginationType = {
-  onPageChange: (page: number | string) => Dispatch<SetStateAction<number>>;
+  onPageChange: (page: number) => void;
   totalCount: number;
   siblingCount: number;
   currentPage: number;
@@ -27,7 +26,7 @@ const Pagination = ({
     pageSize,
   });
 
-  if (paginationRange !== undefined) {
+  if (Array.isArray(paginationRange)) {
     if (currentPage === 0 || paginationRange.length < 2) {
       return null;
     }
@@ -45,23 +44,23 @@ const Pagination = ({
     onPageChange(currentPage - 1);
   };
 
-  if (paginationRange !== undefined) {
-    return (
-      <div
-        className={addConditionalClassName('pagination-container', {
-          [className]: className,
+  return (
+    <div
+      className={addConditionalClassName('pagination-container', {
+        [className]: className,
+      })}
+    >
+      <button
+        type="button"
+        className={addConditionalClassName('pagination-item', {
+          disabled: currentPage === 1,
         })}
+        onClick={onPrevious}
       >
-        <button
-          type="button"
-          className={addConditionalClassName('pagination-item', {
-            disabled: currentPage === 1,
-          })}
-          onClick={onPrevious}
-        >
-          Back
-        </button>
-        {paginationRange.map((pageNumber) => {
+        Back
+      </button>
+      {Array.isArray(paginationRange) &&
+        paginationRange.map((pageNumber) => {
           if (pageNumber === DOTS) {
             return (
               <button
@@ -80,25 +79,23 @@ const Pagination = ({
               className={addConditionalClassName('pagination-item', {
                 selected: pageNumber === currentPage,
               })}
-              onClick={() => onPageChange(pageNumber)}
+              onClick={() => onPageChange(parseInt(`${pageNumber}`, 10))}
             >
               {pageNumber}
             </button>
           );
         })}
-        <button
-          type="button"
-          className={addConditionalClassName('pagination-item', {
-            disabled: currentPage === lastPage,
-          })}
-          onClick={onNext}
-        >
-          Next
-        </button>
-      </div>
-    );
-  }
-  return <div>Pagination Error</div>;
+      <button
+        type="button"
+        className={addConditionalClassName('pagination-item', {
+          disabled: currentPage === lastPage,
+        })}
+        onClick={onNext}
+      >
+        Next
+      </button>
+    </div>
+  );
 };
 
 export default Pagination;

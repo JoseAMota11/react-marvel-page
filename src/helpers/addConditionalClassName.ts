@@ -11,6 +11,7 @@ const addConditionalClassName = (
     const first = [...value];
     value = first;
   }
+  console.log('object');
 
   return value
     ? `${classnamesString} ${Object.keys(classnamesObject)}`

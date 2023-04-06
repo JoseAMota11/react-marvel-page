@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Result } from '../../../interface/comics';
 import { getComics } from '../../../services/comic.services';
-import { fetcherComicsAction } from '../../../redux/actions/fetcher';
 import NoResults from '../../atoms/NoResults/NoResults';
 import Loading from '../../atoms/Loading/Loading';
 import Card from '../../modules/CardComics/Card';
+import { comicsAction } from '../../../redux/actions/general';
+import { AppState } from '../../../redux/reducers/general';
 
 type StateSelector = {
-  data: Result[];
+  app: AppState;
 };
 
 const Comics = () => {
@@ -16,7 +17,7 @@ const Comics = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const selectorCharacter = useSelector(
-    (state: StateSelector): Result[] => state.data
+    (state: StateSelector): Result[] => state.app.comics
   );
 
   useEffect(() => {
@@ -25,7 +26,7 @@ const Comics = () => {
         const {
           data: { results },
         } = await getComics(offset);
-        dispatch(fetcherComicsAction(results));
+        dispatch(comicsAction(results));
         setLoading(false);
       } catch (error) {
         console.error(error);

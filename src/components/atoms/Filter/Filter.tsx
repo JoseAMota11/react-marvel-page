@@ -2,10 +2,6 @@ import debounce from 'lodash/debounce';
 import { ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import {
-  fetcherCharactersAction,
-  fetcherComicsAction,
-} from '../../../redux/actions/fetcher';
-import {
   getCharacterByComics,
   getCharacterByName,
   getCharacterByStories,
@@ -14,6 +10,7 @@ import {
   getComicsByFormat,
   getComicsByTitle,
 } from '../../../services/comic.services';
+import { charactersAction, comicsAction } from '../../../redux/actions/general';
 
 export type FilterProps = {
   section: 'CHARACTERS' | 'COMICS' | 'STORIES';
@@ -28,7 +25,7 @@ const Filter = ({ section }: FilterProps) => {
       const {
         data: { results },
       } = await getCharacterByName(value);
-      dispatch(fetcherCharactersAction(results));
+      dispatch(charactersAction(results));
     } catch (error) {
       console.error(error);
     }
@@ -44,7 +41,7 @@ const Filter = ({ section }: FilterProps) => {
       const {
         data: { results },
       } = await getComicsByTitle(value);
-      dispatch(fetcherComicsAction(results));
+      dispatch(comicsAction(results));
     } catch (error) {
       console.error(error);
     }
@@ -60,7 +57,7 @@ const Filter = ({ section }: FilterProps) => {
     const {
       data: { results },
     } = await getCharacterByComics(id);
-    dispatch(fetcherCharactersAction(results));
+    dispatch(charactersAction(results));
   };
 
   const handleChangeSelectStories = async (
@@ -71,7 +68,7 @@ const Filter = ({ section }: FilterProps) => {
     const {
       data: { results },
     } = await getCharacterByStories(id);
-    dispatch(fetcherCharactersAction(results));
+    dispatch(charactersAction(results));
   };
 
   const handleChangeSelectFormat = async (
@@ -81,7 +78,7 @@ const Filter = ({ section }: FilterProps) => {
     const {
       data: { results },
     } = await getComicsByFormat(value);
-    dispatch(fetcherComicsAction(results));
+    dispatch(comicsAction(results));
   };
 
   return (
