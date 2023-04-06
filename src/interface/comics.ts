@@ -46,6 +46,7 @@ export interface Result {
   characters: Characters;
   stories: Stories;
   events: Characters;
+  comics: Result[] | Result;
 }
 
 export interface Characters {

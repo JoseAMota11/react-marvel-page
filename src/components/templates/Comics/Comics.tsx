@@ -47,8 +47,14 @@ const Comics = () => {
       <h2 className="section--title">Comics</h2>
       <div className="section--card__container">
         {selectorCharacter.length > 0 ? (
-          selectorCharacter.map(({ thumbnail, title, id }) => (
-            <Card key={id} id={id} thumbnail={thumbnail} title={title} />
+          selectorCharacter.map((comic) => (
+            <Card
+              key={comic.id}
+              id={comic.id}
+              thumbnail={comic.thumbnail}
+              title={comic.title}
+              comics={comic}
+            />
           ))
         ) : (
           <NoResults message="comics" />

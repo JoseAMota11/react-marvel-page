@@ -30,6 +30,7 @@ export interface Result {
   comics: Characters;
   events: Characters;
   originalIssue: OriginalIssue;
+  stories: Result[] | Result;
 }
 
 export interface Thumbnail {

@@ -24,3 +24,20 @@ export const storiesAction = (data: AppState['stories']) => ({
   type: 'API/STORIES',
   stories: data,
 });
+
+export const characterBookmarkAction = (
+  data: AppState['bookmarkCharacters']
+) => ({
+  type: 'BOOKMARK/ADD/CHARACTER',
+  bookmarkCharacters: data,
+});
+
+export const comicBookmarkAction = (data: AppState['bookmarkComics']) => ({
+  type: 'BOOKMARK/ADD/COMIC',
+  bookmarkComics: data,
+});
+
+export const storiesBookmarkAction = (data: AppState['bookmarkStories']) => ({
+  type: 'BOOKMARK/ADD/STORY',
+  bookmarkStories: data,
+});

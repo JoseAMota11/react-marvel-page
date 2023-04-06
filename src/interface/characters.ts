@@ -28,6 +28,7 @@ export interface Result {
   stories: Stories;
   events: Comics;
   urls: URL[];
+  character: Result[] | Result;
 }
 
 export interface Comics {

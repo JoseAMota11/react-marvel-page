@@ -1,12 +1,23 @@
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Result } from '../../../interface/comics';
 import Route from '../../routes/routes';
 import addThreeDocs from '../../../helpers/helperFuncs';
+import { comicBookmarkAction } from '../../../redux/actions/general';
 
-const Card = ({ title, id, thumbnail }: Partial<Result>) => {
+const Card = ({ title, id, thumbnail, comics }: Partial<Result>) => {
   const location = useNavigate();
+  const dispatch = useDispatch();
   const handleClick = () => {
     location(`${Route.Comics}/${id}`);
+  };
+
+  const handleBookmark = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+
+    if (typeof comics !== 'undefined') {
+      dispatch(comicBookmarkAction(comics));
+    }
   };
 
   return (
@@ -17,6 +28,14 @@ const Card = ({ title, id, thumbnail }: Partial<Result>) => {
         alt={title}
       />
       <h3 className="card--name">{addThreeDocs(title)}</h3>
+      <button
+        className="card--button"
+        type="button"
+        onClick={handleBookmark}
+        style={{ color: 'white' }}
+      >
+        Bookmark
+      </button>
     </div>
   );
 };

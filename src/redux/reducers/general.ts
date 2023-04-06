@@ -10,6 +10,9 @@ export type AppState = {
   characters: CharactersResult[];
   comics: ComicsResult[];
   stories: StoriesResult[];
+  bookmarkCharacters: CharactersResult[] | CharactersResult;
+  bookmarkComics: ComicsResult[] | ComicsResult;
+  bookmarkStories: StoriesResult[] | StoriesResult;
 };
 
 type ActionType = {
@@ -20,12 +23,22 @@ type ActionType = {
     | 'API/CHARACTERS'
     | 'API/COMICS'
     | 'API/STORIES'
+    | 'BOOKMARK/ADD/CHARACTER'
+    | 'BOOKMARK/ADD/COMIC'
+    | 'BOOKMARK/ADD/STORY'
+    | 'BOOKMARK/DELETE_ONE'
+    | 'BOOKMARK/DELETE_ALL'
+    | 'HIDE'
+    | 'SHOW'
     | '';
   total: AppState['totalCount'];
   current: AppState['currentPage'];
   characters: AppState['characters'];
   comics: AppState['comics'];
   stories: AppState['stories'];
+  bookmarkCharacters: CharactersResult;
+  bookmarkComics: ComicsResult;
+  bookmarkStories: StoriesResult;
 };
 
 const initialValue: AppState = {
@@ -36,6 +49,9 @@ const initialValue: AppState = {
   characters: [],
   comics: [],
   stories: [],
+  bookmarkCharacters: [],
+  bookmarkComics: [],
+  bookmarkStories: [],
 };
 
 const paginationReducer = (state = initialValue, action: ActionType) => {
@@ -65,6 +81,34 @@ const paginationReducer = (state = initialValue, action: ActionType) => {
         ...state,
         stories: action.stories,
       };
+    case 'BOOKMARK/ADD/CHARACTER':
+      if (Array.isArray(state.bookmarkCharacters)) {
+        return {
+          ...state,
+          bookmarkCharacters: [
+            ...state.bookmarkCharacters,
+            action.bookmarkCharacters,
+          ],
+        };
+      }
+      return state.bookmarkCharacters;
+    case 'BOOKMARK/ADD/COMIC':
+      if (Array.isArray(state.bookmarkComics)) {
+        return {
+          ...state,
+          bookmarkComics: [...state.bookmarkComics, action.bookmarkComics],
+        };
+      }
+      return state.bookmarkComics;
+    case 'BOOKMARK/ADD/STORY':
+      if (Array.isArray(state.bookmarkStories)) {
+        return {
+          ...state,
+          bookmarkStories: [...state.bookmarkStories, action.bookmarkStories],
+        };
+      }
+      return state.bookmarkStories;
+
     default:
       return state;
   }

@@ -6,6 +6,7 @@
   background-color: $secondary-black;
   padding: $padding-small;
   border-radius: $border-radius-medium;
+  pointer-events: initial;
 
   &--image {
     width: 100%;

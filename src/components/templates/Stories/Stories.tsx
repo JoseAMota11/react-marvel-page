@@ -48,12 +48,13 @@ const Stories = () => {
       <h2 className="section--title">Comics</h2>
       <div className="section--card__container">
         {selectorCharacter.length > 0 ? (
-          selectorCharacter.map(({ thumbnail, title, id }) => (
+          selectorCharacter.map((stories) => (
             <Card
-              key={id}
-              id={id}
-              thumbnail={isNull(thumbnail) ? null : thumbnail}
-              title={title}
+              key={stories.id}
+              id={stories.id}
+              thumbnail={isNull(stories.thumbnail) ? null : stories.thumbnail}
+              title={stories.title}
+              stories={stories}
             />
           ))
         ) : (
