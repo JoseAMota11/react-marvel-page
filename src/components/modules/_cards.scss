@@ -15,6 +15,21 @@
     border-bottom: 4px solid $secondary-red;
   }
 
+  &--icons {
+    padding: $padding-small 0;
+
+    .card--bookmark__in,
+    .card--bookmark__out {
+      width: 20px;
+      fill: $primary-white;
+      cursor: pointer;
+    }
+
+    .card--bookmark__out {
+      pointer-events: none;
+    }
+  }
+
   &--name {
     font-size: $font-size-small;
   }

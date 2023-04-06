@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import BookMarkIn from '../../../assets/bookmark-out.svg';
+import BookMarkOut from '../../../assets/bookmark-in.svg';
 import { Result } from '../../../interface/stories';
 import Route from '../../routes/routes';
 import { IMAGE_NOT_FOUND } from '../../../helpers/constants';
@@ -9,13 +12,14 @@ import { storiesBookmarkAction } from '../../../redux/actions/general';
 const Card = ({ title, id, thumbnail, stories }: Partial<Result>) => {
   const location = useNavigate();
   const dispatch = useDispatch();
+  const [bookmark, setBookmark] = useState(false);
   const handleClick = () => {
     location(`${Route.Stories}/${id}`);
   };
 
   const handleBookmark = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-
+    setBookmark((prevState) => !prevState);
     if (typeof stories !== 'undefined') {
       dispatch(storiesBookmarkAction(stories));
     }
@@ -33,14 +37,29 @@ const Card = ({ title, id, thumbnail, stories }: Partial<Result>) => {
         alt={title}
       />
       <h3 className="card--name">{addThreeDocs(title)}</h3>
-      <button
-        className="card--button"
-        type="button"
-        onClick={handleBookmark}
-        style={{ color: 'white' }}
-      >
-        Bookmark
-      </button>
+      <div className="card--icons">
+        <button
+          className="card--button"
+          type="button"
+          onClick={handleBookmark}
+          style={{ color: 'white' }}
+        >
+          {' '}
+          {bookmark ? (
+            <img
+              className="card--bookmark__out"
+              src={BookMarkOut}
+              alt="Bookmark"
+            />
+          ) : (
+            <img
+              className="card--bookmark__in"
+              src={BookMarkIn}
+              alt="Bookmark"
+            />
+          )}
+        </button>
+      </div>
     </div>
   );
 };
