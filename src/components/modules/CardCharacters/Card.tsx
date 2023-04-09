@@ -14,16 +14,16 @@ import {
 const Card = ({ name, thumbnail, id, character }: Partial<Result>) => {
   const location = useNavigate();
   const dispatch = useDispatch();
-  const [bookmark, setBookmark] = useState(false);
+  const [bookmarked, setBookmarked] = useState(false);
   const handleClick = () => {
     location(`${Route.Characters}/${id}`);
   };
 
   const handleBookmark = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-    setBookmark((prevState) => !prevState);
     if (typeof character !== 'undefined' && typeof id !== 'undefined') {
-      if (bookmark) {
+      setBookmarked(true);
+      if (bookmarked) {
         dispatch(characterBookmarkDeleteAction(id));
       } else dispatch(characterBookmarkAction(character));
     }
@@ -44,8 +44,7 @@ const Card = ({ name, thumbnail, id, character }: Partial<Result>) => {
           onClick={handleBookmark}
           style={{ color: 'white' }}
         >
-          {' '}
-          {bookmark ? (
+          {bookmarked ? (
             <img
               className="card--bookmark__out"
               src={BookMarkOut}

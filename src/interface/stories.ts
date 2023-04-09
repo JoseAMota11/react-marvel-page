@@ -31,6 +31,7 @@ export interface Result {
   events: Characters;
   originalIssue: OriginalIssue;
   stories: Result[] | Result;
+  bookmarked: boolean;
 }
 
 export interface Thumbnail {

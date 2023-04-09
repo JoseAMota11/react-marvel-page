@@ -29,6 +29,7 @@ export interface Result {
   events: Comics;
   urls: URL[];
   character: Result[] | Result;
+  bookmarked: boolean;
 }
 
 export interface Comics {

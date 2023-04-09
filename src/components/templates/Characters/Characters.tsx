@@ -54,6 +54,7 @@ const Characters = () => {
               thumbnail={character.thumbnail}
               name={character.name}
               character={character}
+              bookmarked={false}
             />
           ))
         ) : (

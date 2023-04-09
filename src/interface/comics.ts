@@ -47,6 +47,7 @@ export interface Result {
   stories: Stories;
   events: Characters;
   comics: Result[] | Result;
+  bookmarked: boolean;
 }
 
 export interface Characters {

@@ -106,7 +106,10 @@ const paginationReducer = (state = initialValue, action: ActionType) => {
       }
       return state.bookmarkComics;
     case 'BOOKMARK/ADD/STORY':
-      if (Array.isArray(state.bookmarkStories)) {
+      if (
+        Array.isArray(state.bookmarkStories) &&
+        typeof action.bookmarkStories === 'object'
+      ) {
         return {
           ...state,
           bookmarkStories: [...state.bookmarkStories, action.bookmarkStories],
